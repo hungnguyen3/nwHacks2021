@@ -19,6 +19,10 @@ class AuthResult {
         return this.data ? this.data.sessionId : "";
     }
 
+    get userId() {
+        return this.data ? this.data._id : "";
+    }
+
     get ok() {
         return this.result;
     }

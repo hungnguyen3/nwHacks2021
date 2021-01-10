@@ -17,7 +17,7 @@ app.post('/get', (req, res) => {
             res.status(401);
             res.json({ message: "not authorized" });
         } else {
-            const students = await Contact.find({ user: authResult.id });
+            const students = await Contact.find({ user: authResult.userId });
             res.json({ students });
         }
     })
