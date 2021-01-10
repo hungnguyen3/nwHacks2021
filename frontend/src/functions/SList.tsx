@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import DeleteStudent from './DeleteStudent';
 import { ListItem, ListItemIcon } from '@material-ui/core';
