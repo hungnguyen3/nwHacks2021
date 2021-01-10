@@ -31,8 +31,17 @@ const App: React.FC = () => {
                     path="/"
                     render={props => {
                         return token ? (
-                            <div>
-                                <ManageStudents sessionId={token} />
+                            <div
+                                className="background"
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}
+                            >
+                                <div>
+                                    <ManageStudents sessionId={token} />
+                                </div>
                                 <AddQuestions sessionId={token} />
                                 <SendSMS sessionId={token} />
                                 <Logout sessionId={token} setToken={setToken} />
