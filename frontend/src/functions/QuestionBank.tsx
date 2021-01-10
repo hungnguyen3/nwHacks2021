@@ -29,11 +29,20 @@ const QuestionBank: React.FC<Props> = ({
             {questionBank.map(questions => {
                 return (
                     <div>
-                        <label key={questions._id}> 
-                            {questions.input[1] == null?
-                            <label>Fact: {questions.input[0]}</label>
-                            :<label>Question: {questions.input[0]} Answer: {questions.input[1]}</label>}
-                            <DeleteQuestion sessionId={sessionId} uId={questions._id} handleGetQuestions={handleGetQuestions}/>
+                        <label key={questions._id}>
+                            {questions.input[1] == null ? (
+                                <label>Fact: {questions.input[0]}</label>
+                            ) : (
+                                <label>
+                                    Question: {questions.input[0]} Answer:{' '}
+                                    {questions.input[1]}
+                                </label>
+                            )}
+                            <DeleteQuestion
+                                sessionId={sessionId}
+                                uId={questions._id}
+                                handleGetQuestions={handleGetQuestions}
+                            />
                         </label>
                     </div>
                     // <List
