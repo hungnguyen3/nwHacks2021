@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-function AddQuestions({ sessionId }) {
-    const [questionBank, setQuestionBank] = useState([{ "_id": { "$oid": "5ffa70ac2abae473000bcdd1" }, "user": { "$oid": "5ffa5db0c1c7da5b944c7437" }, "firstName": "Hung", "lastName": "Nguyen", "phone": 7781234567 }])
+function AddQuestions({ sessionId }:any) {
+    const [questionBank, setQuestionBank] = useState()
     const [radioButton, setRadioButton] = useState()
     const [facts, setFacts] = useState();
     const [questions, setQuestions] = useState();
     const [answers, setAnswers] = useState();
 
-    async function addQuestion(credentials) {
+    async function addQuestion(credentials : any) {
         console.log(credentials)
         return fetch('http://localhost:8080/api/v1/homework/add', {
             method: 'POST',
@@ -22,7 +22,9 @@ function AddQuestions({ sessionId }) {
     const handleSubmit = async e => {
         e.preventDefault();
         const token = await addQuestion((() => {
-            let obj = { sessionId: sessionId.sessionId };
+            console.log("radioButton value is")
+            console.log(radioButton);
+            let obj = { sessionId: sessionId };
             if (radioButton === "facts") {
                 obj.type = 1;
                 obj.content = [facts];
@@ -36,11 +38,12 @@ function AddQuestions({ sessionId }) {
 
     return (
         <div>
+            <h1>Question Bank</h1>
             <h1>Add Questions & Facts</h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     <h2>Facts</h2>
-                    <input type="radio" name="inputtype" value="facts" onChange={e => setRadioButton(e.target.value)} checked />
+                    <input type="radio" name="inputtype" value="facts" onChange={e => setRadioButton(e.target.value)}/>
                     <h2>Q&A</h2>
                     <input type="radio" name="inputtype" value="qa" onChange={e => setRadioButton(e.target.value)}/>
                 </label>
