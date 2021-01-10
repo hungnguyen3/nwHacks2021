@@ -8,8 +8,11 @@
 }
 
 .background {
-  background-image: url("./assets/gridbackground.png");
+  background-image: url("./assets/bg-new.png");
   height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: -6em;
 }
 
 .clipboard {

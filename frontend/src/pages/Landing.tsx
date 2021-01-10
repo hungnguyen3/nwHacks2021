@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { Redirect } from 'react-router-dom';
@@ -9,7 +10,6 @@ const Landing: React.FC = props => {
         <Redirect to="/login" />
     ) : (
         <div
-            className="background"
             style={{
                 display: 'flex',
                 alignItems: 'center',

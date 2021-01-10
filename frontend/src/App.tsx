@@ -9,8 +9,6 @@ import { useEffect, useState } from 'react';
 import Logout from './functions/Logout';
 import NavbarContainer from './pages/NavbarContainer';
 
-import clipboard from './assets/clipboard.png';
-
 import {
     BrowserRouter as Router,
     Switch,
@@ -45,11 +43,6 @@ const App: React.FC = () => {
                         justifyContent: 'center',
                     }}
                 >
-                    <img
-                        src={clipboard}
-                        alt="clipboard"
-                        className="clipboard"
-                    />
                     <div style={{ zIndex: 1 }}>
                         <Route exact path="/landing" component={Landing} />
                         <Route

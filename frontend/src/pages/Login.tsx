@@ -37,7 +37,6 @@ const Login: React.FC<Props> = ({ setToken }) => {
 
     return (
         <div
-            className="background"
             style={{
                 display: 'flex',
                 alignItems: 'center',
