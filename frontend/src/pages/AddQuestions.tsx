@@ -107,6 +107,7 @@ const AddQuestions: React.FC<Props> = ({ sessionId }) => {
                     </button>
                 </div>
             </form>
+            <button onClick={() => handleGetQuestions()}>Refresh</button>
         </div>
     );
 };
