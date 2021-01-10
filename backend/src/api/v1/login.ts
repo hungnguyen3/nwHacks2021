@@ -2,14 +2,40 @@ import bcrypt from 'bcryptjs';
 import { Router } from 'express';
 import { v4 as uuid } from 'uuid';
 
-import { User } from '../../models/User';
+import { User, UserDoc } from '../../models/User';
 
 const app = Router();
 
+class AuthResult {
+    private readonly result: boolean;
+    private readonly data: UserDoc | undefined;
+
+    constructor(result: boolean, data: UserDoc | undefined) {
+        this.result = result;
+        this.data = data;
+    }
+
+    get id() {
+        return this.data ? this.data.sessionId : "";
+    }
+
+    get ok() {
+        return this.result;
+    }
+}
+
 const generateUniqueId = async(): Promise<string> => {
     const sessionId = uuid();
-    const user = await User.findOne({ sessionId })
+    const user = await User.findOne({ sessionId });
     return user != null ? generateUniqueId() : sessionId;
+}
+
+export const authenticate = async(sessionId: string) => {
+    const user = await User.findOne({ sessionId });
+    if (user != null) {
+        return new AuthResult(true, user);
+    }
+    return new AuthResult(false, undefined);
 }
 
 app.post('/', async (req, res) => { 
