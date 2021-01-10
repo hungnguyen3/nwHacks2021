@@ -1,4 +1,4 @@
-##SMSSchool
+## SMS School
 
 ## Inspiration
 After hearing news about the state of education, we thought we had to do something about it. More than **250 million** children don't have even basic education. Knowing how important education was to us we really couldn't sit still and do nothing. 
