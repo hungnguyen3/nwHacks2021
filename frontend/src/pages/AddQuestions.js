@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 function AddQuestions({ sessionId }) {
     const [questionBank, setQuestionBank] = useState([{ "_id": { "$oid": "5ffa70ac2abae473000bcdd1" }, "user": { "$oid": "5ffa5db0c1c7da5b944c7437" }, "firstName": "Hung", "lastName": "Nguyen", "phone": 7781234567 }])
     const [radioButton, setRadioButton] = useState()
-    const [type, setType] = useState();
     const [facts, setFacts] = useState();
     const [questions, setQuestions] = useState();
     const [answers, setAnswers] = useState();
@@ -43,10 +42,10 @@ function AddQuestions({ sessionId }) {
                     <h2>Facts</h2>
                     <input type="radio" name="inputtype" value="facts" onChange={e => setRadioButton(e.target.value)} checked />
                     <h2>Q&A</h2>
-                    <input type="radio" name="inputtype" value="qa" onChange={e => setRadioButton(e.target.value)} />
+                    <input type="radio" name="inputtype" value="qa" onChange={e => setRadioButton(e.target.value)}/>
                 </label>
                 {
-                    radioButton == 'facts' ?
+                    radioButton == "facts" ?
                         <label>
                             <p>Fact</p>
                             <input type="text" onChange={e => setFacts(e.target.value)} />
