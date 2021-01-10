@@ -34,4 +34,12 @@ app.post('/add', async (req, res) => {
     }
 })
 
+app.post('/remove', async (req, res) => {
+    Contact.deleteOne({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        phone: req.body.phone,
+    })
+})
+
 export default app;
