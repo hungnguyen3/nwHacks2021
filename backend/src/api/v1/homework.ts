@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { Homework } from '../../models/Homework'
 
-import { authenticate } from './login';
+import { authenticate } from './util';
 
 const app = Router();
 
