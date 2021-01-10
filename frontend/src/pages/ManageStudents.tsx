@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, { useEffect, useState } from 'react';
 import StudentsList from '../functions/StudentsList';
@@ -48,21 +47,11 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
         console.log(token);
     };
 
-    async function getStudents() {
-        return fetch('http://localhost:8080/api/v1/contacts/get', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ sessionId: sessionId }),
-        }).then(data => data.json());
-    }
-
-    const handleGetStudents = async () => {
-        const data = await getStudents();
-        console.log(data);
-        //console.log(data.students[0]);
-        setStudents(data.students);
+    const handleGetStudents = () => {
+        axios
+            .post('/api/v1/contacts/get', { sessionId })
+            .then(res => setStudents(res.data.students))
+            .catch(err => console.error(err));
     };
 
     useEffect(() => {
