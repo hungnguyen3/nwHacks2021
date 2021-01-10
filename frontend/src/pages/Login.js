@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from '@material-ui/core';
-import Register from './Register';
+import Register from '../functions/Register';
 
 function Login({setToken}) {
     const [username, setUserName] = useState();

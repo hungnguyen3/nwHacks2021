@@ -1,12 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import Login from './Login.js';
-import Managestudents from './ManageStudents';
-import AddQuestions from './AddQuestions';
-import SendSMS from './SendSMS';
-import Register from './Register';
+import Login from './pages/Login.js';
+import Managestudents from './pages/ManageStudents';
+import AddQuestions from './pages/AddQuestions';
+import SendSMS from './pages/SendSMS';
 import { useState } from 'react';
-import Logout from './Logout';
+import Logout from './functions/Logout';
 
 function App() {
   const [token, setToken] = useState();

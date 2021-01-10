@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import List from './List.js'
-import StudentsList from './StudentsList.js'
+import List from '../functions/List.js'
+import StudentsList from '../functions/StudentsList.js'
 
 //api/v1/
 
