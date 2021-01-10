@@ -2,6 +2,7 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import axios from 'axios';
 
 //api/v1/contacts/
 
@@ -16,38 +17,23 @@ const DeleteStudent: React.FC<Props> = ({
     uId,
     handleGetStudents,
 }) => {
-    async function getStudents(info: { sessionId: string }) {
-        const url = `http://localhost:8080/api/v1/contacts/${uId}`;
-        return fetch(url, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(info),
-        }).then(data => data.json());
-    }
-
-    const handleDeleteStudents = async () => {
-        const data = await getStudents({
-            sessionId: sessionId,
-        });
-        console.log(data);
+    const handleDeleteStudents = (e: React.MouseEvent) => {
+        e.preventDefault();
+        axios
+            .delete(`http://localhost:8080/api/v1/contacts/${uId}`, {
+                data: {
+                    sessionId,
+                },
+            })
+            .then(resp => console.log(resp))
+            .catch(err => console.error(err));
     };
 
     return (
-        <IconButton
-            aria-label="delete"
-            onClick={() => {
-            return handleDeleteStudents().then(
-                setTimeout(() => {
-                    handleGetStudents();
-                }, 1000)
-            );
-        }
-        }
-    >
-        <DeleteIcon></DeleteIcon>
-    </IconButton>;
+        <IconButton aria-label="delete" onClick={handleDeleteStudents}>
+            <DeleteIcon></DeleteIcon>
+        </IconButton>
+    );
 };
 
 export default DeleteStudent;

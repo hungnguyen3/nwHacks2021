@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import List from './List';
 // import DeleteQuestion from './DeleteQuestion';
 
 export interface Homework {
@@ -15,11 +14,7 @@ interface Props {
     handleGetQuestions(): void;
 }
 
-const QuestionBank: React.FC<Props> = ({
-    questionBank,
-    sessionId,
-    handleGetQuestions,
-}) => {
+const QuestionBank: React.FC<Props> = ({ questionBank }) => {
     // function refresh() {
     //     this.props.handleGetQuestions();
     // }

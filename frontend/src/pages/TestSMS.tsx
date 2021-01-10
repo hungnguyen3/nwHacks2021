@@ -130,7 +130,6 @@ const TestSMS: React.FC<Props> = ({ itemsFromBackend, sessionId }) => {
                         items: [],
                     },
                 });
-                console.log(columns);
             })
             .catch(err => console.error('a', err));
     }, []);
