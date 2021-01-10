@@ -1,45 +1,69 @@
-import React, { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import QuestionBank from '../functions/QuestionBank';
 
-function AddQuestions({ sessionId }: any) {
-    const [questionBank, setQuestionBank] = useState();
+interface Props {
+    sessionId: string;
+}
+interface Question {
+    sessionId?: string;
+    type: 1 | 2 | 3;
+    input: [string, string | null];
+}
+
+const AddQuestions: React.FC<Props> = ({ sessionId }) => {
+    const [questionBank, setQuestionBank] = useState([]);
     const [radioButton, setRadioButton] = useState('');
     const [facts, setFacts] = useState('');
     const [questions, setQuestions] = useState('');
     const [answers, setAnswers] = useState('');
 
-    async function addQuestion(credentials: any) {
-        console.log(credentials);
-        return fetch('http://localhost:8080/api/v1/homework/add', {
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        const isFacts = radioButton === 'facts';
+        const question: Question = {
+            sessionId: sessionId,
+            type: isFacts ? 1 : 2,
+            input: isFacts ? [facts, null] : [questions, answers],
+        };
+        axios
+            .post('/api/v1/homework/add', { ...question })
+            .then(res => console.log(res.data))
+            .catch(err => console.error(err));
+    };
+
+    async function getQuestions() {
+        return fetch('http://localhost:8080/api/v1/homework/get', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(credentials),
+            body: JSON.stringify({ sessionId: sessionId }),
         }).then(data => data.json());
     }
 
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
-        const token = await addQuestion(
-            (() => {
-                console.log('radioButton value is');
-                console.log(radioButton);
-                const obj = { sessionId: sessionId };
-                if (radioButton === 'facts') {
-                    obj.type = 1;
-                    obj.input = [facts];
-                } else {
-                    obj.type = 2;
-                    obj.input = [questions, answers];
-                }
-                return obj;
-            })()
-        );
+    const handleGetQuestions = async () => {
+        const data = await getQuestions({});
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        console.log(data.homework);
+        setQuestionBank(data.homework);
     };
+
+    // useEffect(()=>{
+    //     handleGetQuestions();
+    // }, []);
 
     return (
         <div>
             <h1>Question Bank</h1>
+            <QuestionBank
+                questionBank={questionBank}
+                sessionId={sessionId}
+                handleGetQuestions={handleGetQuestions}
+            />
+
             <h1>Add Questions & Facts</h1>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -86,7 +110,9 @@ function AddQuestions({ sessionId }: any) {
                     </label>
                 )}
                 <div>
-                    <button type="submit">Add</button>
+                    <button type="submit" onClick={() => handleGetQuestions()}>
+                        Add
+                    </button>
                 </div>
             </form>
         </div>

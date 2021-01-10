@@ -1,48 +1,37 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 
-function Login({ setToken }: any) {
+import axios, { AxiosResponse } from 'axios';
+interface Props {
+    setToken(token: string): void;
+}
+
+const Login: React.FC<Props> = ({ setToken }) => {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
 
-    async function loginUser(credentials: any) {
-        return fetch('http://localhost:8080/api/v1/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(credentials),
-        }).then(data => data.json());
-    }
-
-    const handleSubmit = async e => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-
-        const token = await loginUser({
-            username,
-            password,
-        });
-        console.log(token);
-        setToken(token.sessionId);
+        axios
+            .post('api/v1/login', {
+                username,
+                password,
+            })
+            .then((response: AxiosResponse<{ sessionId: string }>) => {
+                setToken(response.data.sessionId);
+            })
+            .catch(err => console.log(err));
     };
 
-    async function registerUser(credentials: any) {
-        console.log(credentials);
-        console.log('Register');
-        return fetch('http://localhost:8080/api/v1/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(credentials),
-        }).then(data => data.json());
-    }
-
-    const handleRegister = async e => {
-        const token = await registerUser({
-            username,
-            password,
-        });
+    const handleRegister = (e: React.FormEvent) => {
+        e.preventDefault();
+        axios
+            .post('/api/v1/register', {
+                username,
+                password,
+            })
+            .then(() => console.log('Registration successful'))
+            .catch(err => console.error(err));
     };
 
     return (
@@ -70,6 +59,6 @@ function Login({ setToken }: any) {
             <button onClick={() => handleRegister()}>Register</button>
         </div>
     );
-}
+};
 
 export default Login;

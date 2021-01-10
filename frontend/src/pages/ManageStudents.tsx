@@ -61,13 +61,13 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
     const handleGetStudents = async () => {
         const data = await getStudents();
         console.log(data);
-        console.log(data.students[0]);
+        //console.log(data.students[0]);
         setStudents(data.students);
     };
 
     useEffect(() => {
         void handleGetStudents();
-    });
+    }, []);
 
     return (
         <div>
@@ -107,7 +107,7 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
                         type="submit"
                         onClick={() =>
                             setTimeout(() => {
-                                handleGetStudents();
+                                void handleGetStudents();
                             }, 1000)
                         }
                     >
