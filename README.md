@@ -33,3 +33,4 @@ The functionality of our app works, we learned how to implement Twilio. In addit
 
 ## What's next for smschool
 We want to improve the UI and make sure it looks more aesthetically pleasing and that the user has a better experience interacting with our app.
+
