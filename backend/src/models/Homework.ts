@@ -18,7 +18,7 @@ export const homeworkSchema = new Schema({
         enum: [1, 2, 3]
     },
     input: {
-        type: String, required: true,
+        type: [String], required: true,
     },
 });
 
