@@ -60,24 +60,38 @@ const AddQuestions: React.FC<Props> = ({ sessionId }) => {
             />
 
             <h1>Add Questions & Facts</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <h2>Fact</h2>
-                    <input
-                        type="radio"
-                        name="inputtype"
-                        value="facts"
-                        onChange={e => setRadioButton(e.target.value)}
-                        defaultChecked
-                    />
-                    <h2>Q&A</h2>
-                    <input
-                        type="radio"
-                        name="inputtype"
-                        value="qa"
-                        onChange={e => setRadioButton(e.target.value)}
-                    />
-                </label>
+            <form
+                onSubmit={handleSubmit}
+                style={{ display: 'flex', flexDirection: 'column' }}
+            >
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-evenly',
+                    }}
+                >
+                    <span>
+                        <input
+                            type="radio"
+                            name="inputtype"
+                            value="facts"
+                            id="facts"
+                            onChange={e => setRadioButton(e.target.value)}
+                            defaultChecked
+                        />
+                        <label htmlFor="facts">Fact</label>
+                    </span>
+                    <span>
+                        <input
+                            type="radio"
+                            name="inputtype"
+                            value="qa"
+                            id="qa"
+                            onChange={e => setRadioButton(e.target.value)}
+                        />
+                        <label htmlFor="qa">Q&A</label>
+                    </span>
+                </div>
                 {radioButton == 'qa' ? (
                     <>
                         <label>
