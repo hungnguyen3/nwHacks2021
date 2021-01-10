@@ -1,8 +1,11 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import cors from 'cors';
 
 import v1 from './v1';
 
 const router = Router();
+
+router.use(cors());
 
 router.get('/', (req, res) => {
     res.json({
