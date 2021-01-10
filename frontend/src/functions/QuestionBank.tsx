@@ -1,8 +1,8 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import List from './List';
 
-interface Homework {
+export interface Homework {
     _id: string;
     input: [string, string];
     user: string;
@@ -27,9 +27,7 @@ const QuestionBank: React.FC<Props> = ({
         <>
             {questionBank.map(questions => {
                 return (
-                    <span key={questions._id}>
-                        {JSON.stringify(questions)}
-                    </span>
+                    <span key={questions._id}>{JSON.stringify(questions)}</span>
                     // <List
                     //     key={questions._id}
                     //     list={questions}
