@@ -25,6 +25,7 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
     const [phone, setPhone] = useState('');
 
     const addStudent = (info: StudentInfo) => {
+        console.log(info);
         return new Promise((resolve, reject) => {
             axios
                 .post('http://localhost:8080/api/v1/contacts/add', {
@@ -78,13 +79,8 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
                         variant="outlined"
                         label="First Name"
                         type="text"
-                    >
-                        <p>First Name</p>
-                        <input
-                            type="text"
-                            onChange={e => setFirstName(e.target.value)}
-                        />
-                    </TextField>
+                        onChange={e => setFirstName(e.target.value)}
+                    ></TextField>
                 </div>
                 <div>
                     <TextField
@@ -92,13 +88,8 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
                         variant="outlined"
                         label="Last Name"
                         type="text"
-                    >
-                        <p>Last Name</p>
-                        <input
-                            type="text"
-                            onChange={e => setLastName(e.target.value)}
-                        />
-                    </TextField>
+                        onChange={e => setLastName(e.target.value)}
+                    ></TextField>
                 </div>
                 <div>
                     <TextField
@@ -106,13 +97,8 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
                         variant="outlined"
                         label="Phone"
                         type="text"
-                    >
-                        <p>Phone</p>
-                        <input
-                            type="text"
-                            onChange={e => setPhone(e.target.value)}
-                        />
-                    </TextField>
+                        onChange={e => setPhone(e.target.value)}
+                    ></TextField>
                 </div>
                 <div>
                     <Button
