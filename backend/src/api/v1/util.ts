@@ -10,11 +10,12 @@ class AuthResult {
     }
 
     get sessionId() {
-        return this.data ? this.data.sessionId : "";
+        return this.data ? this.data.sessionId : '';
     }
 
     get userId() {
-        return this.data ? this.data._id : "";
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        return this.data ? this.data._id : '';
     }
 
     get ok() {
@@ -22,10 +23,10 @@ class AuthResult {
     }
 }
 
-export const authenticate = async(sessionId: string) => {
+export const authenticate = async (sessionId: string): Promise<AuthResult> => {
     const user = await User.findOne({ sessionId });
     if (user != null) {
         return new AuthResult(true, user);
     }
     return new AuthResult(false, null);
-}
+};
