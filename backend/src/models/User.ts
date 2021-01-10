@@ -1,4 +1,10 @@
-import { model, Schema } from 'mongoose';
+import { Document, model, Schema } from 'mongoose';
+
+interface UserDoc extends Document {
+    username: string,
+    password: string,
+    contact: Schema.Types.ObjectId
+}
 
 export const userSchema = new Schema({
     username: {
@@ -9,9 +15,8 @@ export const userSchema = new Schema({
     },
     contact: {
         type: Schema.Types.ObjectId,
-        ref: 'contacts',
-        required: true
+        ref: 'contacts'
     }
 });
 
-export const User = model('users', userSchema);
+export const User = model<UserDoc>('users', userSchema);
