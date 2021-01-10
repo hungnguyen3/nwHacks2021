@@ -32,7 +32,7 @@ const SendSMS: React.FC<Props> = ({ sessionId }) => {
 
     const handleGetHomeWork = () => {
         axios
-            .post('/api/v1/homework/get', {
+            .post('http://localhost:8080/api/v1/homework/get', {
                 sessionId,
             })
             .then((res: { data: { homework: [] } }) =>

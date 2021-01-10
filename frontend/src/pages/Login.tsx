@@ -12,7 +12,7 @@ const Login: React.FC<Props> = ({ setToken }) => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         axios
-            .post('api/v1/login', {
+            .post('http://localhost:8080/api/v1/login', {
                 username,
                 password,
             })
@@ -25,7 +25,7 @@ const Login: React.FC<Props> = ({ setToken }) => {
     const handleRegister = (e: React.FormEvent) => {
         e.preventDefault();
         axios
-            .post('/api/v1/register', {
+            .post('http://localhost:8080/api/v1/register', {
                 username,
                 password,
             })

@@ -25,7 +25,7 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
     const addStudent = (info: StudentInfo) => {
         return new Promise((resolve, reject) => {
             axios
-                .post('/api/v1/contacts/add', {
+                .post('http://localhost:8080/api/v1/contacts/add', {
                     ...info,
                 })
                 .then(response => {
@@ -49,7 +49,7 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
 
     const handleGetStudents = () => {
         axios
-            .post('/api/v1/contacts/get', { sessionId })
+            .post('http://localhost:8080/api/v1/contacts/get', { sessionId })
             .then(res => setStudents(res.data.students))
             .catch(err => console.error(err));
     };

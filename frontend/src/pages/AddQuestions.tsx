@@ -30,14 +30,14 @@ const AddQuestions: React.FC<Props> = ({ sessionId }) => {
             input: isFacts ? [facts, null] : [questions, answers],
         };
         axios
-            .post('/api/v1/homework/add', { ...question })
+            .post('http://localhost:8080/api/v1/homework/add', { ...question })
             .then(res => console.log(res.data))
             .catch(err => console.error(err));
     };
 
     const handleGetQuestions = () => {
         axios
-            .post('/api/v1/homework/get', {
+            .post('http://localhost:8080/api/v1/homework/get', {
                 sessionId: sessionId,
             })
             .then((res: AxiosResponse<{ homework: [] }>) =>
