@@ -45,21 +45,19 @@ app.post('/add', (req, res) => {
     })
 })
 
-app.post('/remove', (req, res) => {
+app.delete('/:id', (req, res) => {
     authenticate(req.body.sessionId).then(authResult => {
         if (!authResult.ok) {
             res.status(401);
             res.json({ message: "not authorized" });
         } else {
             Homework.deleteOne({
-                user: authResult.userId,
-                type: req.body.type,
-                input: req.body.input,
+                _id: req.params.id,
             }, undefined, (err: any) => {
                 if (err) {
-                    res.send({ title: "error removing homework", message: err.message });
+                    res.status(500).json({ message: err.message });
                 } else {
-                    res.send({ message: "homework deleted" });
+                    res.send({ message: `${req.params.id} deleted`});
                 }
             });
         }
