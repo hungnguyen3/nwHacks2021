@@ -55,12 +55,7 @@ const SendSMS: React.FC<Props> = ({ sessionId }) => {
         // console.log(itemsFromBackend);
 
         return homework.reduce((res: JSX.Element[], hw) => {
-            res.push(
-                <span key={hw._id}>
-                    {hw.input[0]}
-                    {hw.input[1]}
-                </span>
-            );
+            res.push();
             return res;
         }, []);
     }
