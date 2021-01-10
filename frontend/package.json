@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -19,7 +20,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "npm run lint:fix",
+    "lint:fix": "npm run lint:check -- --fix",
+    "lint:check": "eslint --ext .js,.ts,.jsx,.tsx ./src"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +44,7 @@
     ]
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.20",
     "@types/react": "^17.0.0",

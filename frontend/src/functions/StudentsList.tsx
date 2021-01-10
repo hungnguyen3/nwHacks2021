@@ -1,17 +1,21 @@
-import React from 'react'
-import List from './List'
+import React from 'react';
+import List from './List';
 
-function StudentsList({students, sessionId, handleGetStudents}) {
-
-    function refresh(){
-        this.props.handleGetStudents()
+function StudentsList({ students, sessionId, handleGetStudents }) {
+    function refresh() {
+        this.props.handleGetStudents();
     }
 
-    return (
-        students.map(students => {
-            return <List key={students._id} list={students} sessionId={sessionId} handleGetStudents = {handleGetStudents}/>
-        }) 
-    )
+    return students.map(students => {
+        return (
+            <List
+                key={students._id}
+                list={students}
+                sessionId={sessionId}
+                handleGetStudents={handleGetStudents}
+            />
+        );
+    });
 }
 
-export default StudentsList
+export default StudentsList;

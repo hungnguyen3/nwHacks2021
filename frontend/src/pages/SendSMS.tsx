@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-function SendSMS() {
-    return (
-        <div>
-            Send
-        </div>
-    )
+const SendSMS: React.FC = () => {
+    return <div>Send</div>;
 }
 
-export default SendSMS
+export default SendSMS;

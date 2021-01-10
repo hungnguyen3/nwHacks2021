@@ -1,7 +1,7 @@
 import { Document, model, Schema } from 'mongoose';
 
 interface HomeworkDoc extends Document {
-    user: Schema.Types.ObjectId;
+    user: string;
     type: 1 | 2 | 3;
     input: string[];
 }

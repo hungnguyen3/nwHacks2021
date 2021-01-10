@@ -1,16 +1,12 @@
-import React from 'react'
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import React from 'react';
 
-function Logout({setToken}) {
-
-    function logoutfunction(){
-        setToken();
-    }
-
+function Logout({ setToken }: any) {
     return (
         <div>
-            <button onClick={()=>logoutfunction()}>Log Out</button>
+            <button onClick={setToken}>Log Out</button>
         </div>
-    )
+    );
 }
 
-export default Logout
+export default Logout;
