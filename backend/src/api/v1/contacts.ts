@@ -30,7 +30,7 @@ app.post('/add', (req, res) => {
             res.json({ message: "not authorized" });
         } else {
             Contact.create({
-                user: authResult.id,
+                user: authResult.userId,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 phone: req.body.phone,
@@ -53,7 +53,7 @@ app.post('/remove', (req, res) => {
             res.json({ message: "not authorized" });
         } else {
             Contact.deleteOne({
-                user: authResult.id,
+                user: authResult.userId,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 phone: req.body.phone,

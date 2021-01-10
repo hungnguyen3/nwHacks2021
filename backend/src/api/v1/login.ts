@@ -8,14 +8,14 @@ const app = Router();
 
 class AuthResult {
     private readonly result: boolean;
-    private readonly data: UserDoc | undefined;
+    private readonly data: UserDoc | null;
 
-    constructor(result: boolean, data: UserDoc | undefined) {
+    constructor(result: boolean, data: UserDoc | null) {
         this.result = result;
         this.data = data;
     }
 
-    get id() {
+    get sessionId() {
         return this.data ? this.data.sessionId : "";
     }
 
@@ -39,7 +39,7 @@ export const authenticate = async(sessionId: string) => {
     if (user != null) {
         return new AuthResult(true, user);
     }
-    return new AuthResult(false, undefined);
+    return new AuthResult(false, null);
 }
 
 app.post('/', async (req, res) => { 

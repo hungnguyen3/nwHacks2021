@@ -18,7 +18,7 @@ app.post('/add', (req, res) => {
             res.json({ message: "not authorized" });
         } else {
             Homework.create({
-                user: authResult.id,
+                user: authResult.userId,
                 type: req.body.type,
                 input: req.body.input,
             }, (err, _data) => {
@@ -40,7 +40,7 @@ app.post('/remove', (req, res) => {
             res.json({ message: "not authorized" });
         } else {
             Homework.deleteOne({
-                user: authResult.id,
+                user: authResult.userId,
                 type: req.body.type,
                 input: req.body.input,
             }, undefined, (err: any) => {
