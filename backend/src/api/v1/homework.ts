@@ -11,6 +11,18 @@ app.get('/', (req, res) => {
     })
 });
 
+app.post('/get', (req, res) => {
+    authenticate(req.body.sessionId).then(async (authResult) => {
+        if (!authResult.ok) {
+            res.status(401);
+            res.json({ message: "not authorized" });
+        } else {
+            const students = await Homework.find({ user: authResult.userId });
+            res.json({ students });
+        }
+    })
+})
+
 app.post('/add', (req, res) => {
     authenticate(req.body.sessionId).then(authResult => {
         if (!authResult.ok) {
