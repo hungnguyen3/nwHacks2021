@@ -7,7 +7,12 @@ import SendSMS from './pages/SendSMS';
 import { useEffect, useState } from 'react';
 import Logout from './functions/Logout';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from 'react-router-dom';
 
 const App: React.FC = () => {
     const [token, setToken] = useState(() => {
@@ -28,8 +33,18 @@ const App: React.FC = () => {
         <Router>
             <Switch>
                 <Route
-                    path="/"
+                    path="/login"
                     render={props => {
+                        return token ? (
+                            <Redirect to="/" />
+                        ) : (
+                            <Login {...props} setToken={setToken} />
+                        );
+                    }}
+                />
+                <Route
+                    path="/"
+                    render={() => {
                         return token ? (
                             <div
                                 className="background"
@@ -47,7 +62,7 @@ const App: React.FC = () => {
                                 <Logout sessionId={token} setToken={setToken} />
                             </div>
                         ) : (
-                            <Login {...props} setToken={setToken} />
+                            <Redirect to="/login" />
                         );
                     }}
                 />
