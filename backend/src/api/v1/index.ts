@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import contacts from './contacts';
 import login from './login';
 import register from './register';
 
@@ -11,6 +12,7 @@ app.get('/', (req, res) => {
     })
 });
 
+app.use('/contacts', contacts);
 app.use('/login', login);
 app.use('/register', register);
 

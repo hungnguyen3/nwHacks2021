@@ -19,4 +19,8 @@ export const userSchema = new Schema({
     }
 });
 
+userSchema.statics.findBySession = function(sessionId) {
+    return this.findOne({ sessionId });
+}
+
 export const User = model<UserDoc>('users', userSchema);
