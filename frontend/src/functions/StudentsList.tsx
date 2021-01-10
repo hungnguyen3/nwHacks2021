@@ -2,9 +2,9 @@ import React from 'react';
 import List from './List';
 
 interface Props {
-    students: [Contact];
+    students: Contact[];
     sessionId: string;
-    handleGetStudents: void;
+    handleGetStudents(): void;
 }
 
 interface Contact {

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import List from './List';
 
@@ -8,9 +9,9 @@ interface Homework {
     type: 1 | 2 | 3;
 }
 interface Props {
-    questionBank: [Homework];
+    questionBank: Homework[];
     sessionId?: string;
-    handleGetQuestions: void;
+    handleGetQuestions(): void;
 }
 
 const QuestionBank: React.FC<Props> = ({
@@ -26,12 +27,15 @@ const QuestionBank: React.FC<Props> = ({
         <>
             {questionBank.map(questions => {
                 return (
-                    <List
-                        key={questions._id}
-                        list={questions}
-                        sessionId={sessionId}
-                        handleGetQuestions={handleGetQuestions}
-                    />
+                    <span key={questions._id}>
+                        {JSON.stringify(questions)}
+                    </span>
+                    // <List
+                    //     key={questions._id}
+                    //     list={questions}
+                    //     sessionId={sessionId}
+                    //     handleGetQuestions={handleGetQuestions}
+                    // />
                 );
             })}
         </>

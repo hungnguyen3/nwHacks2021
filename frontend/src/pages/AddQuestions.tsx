@@ -34,21 +34,13 @@ const AddQuestions: React.FC<Props> = ({ sessionId }) => {
             .catch(err => console.error(err));
     };
 
-    async function getQuestions() {
-        return fetch('http://localhost:8080/api/v1/homework/get', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ sessionId: sessionId }),
-        }).then(data => data.json());
-    }
-
-    const handleGetQuestions = async () => {
-        const data = await getQuestions({});
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-        console.log(data.homework);
-        setQuestionBank(data.homework);
+    const handleGetQuestions = () => {
+        axios
+            .post('/api/v1/homework/get', {
+                sessionId: sessionId,
+            })
+            .then(res => setQuestionBank(res.data.homework))
+            .catch(err => console.error(err));
     };
 
     // useEffect(()=>{

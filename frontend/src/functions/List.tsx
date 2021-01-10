@@ -6,7 +6,7 @@ import DeleteStudent from './DeleteStudent';
 interface Props {
     list: Contact;
     sessionId: string;
-    handleGetStudents: void;
+    handleGetStudents(): void;
 }
 
 interface Contact {
