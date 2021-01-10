@@ -6,7 +6,7 @@ function Register() {
 
     async function loginUser(credentials) {
         console.log(credentials)
-        return fetch('api/register', {
+        return fetch('http://localhost:8080/api/v1/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -22,7 +22,6 @@ function Register() {
         username,
         password
     });
-    //setToken(token);
     }
 
     return (
