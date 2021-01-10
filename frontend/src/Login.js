@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
+import { Button } from '@material-ui/core';
+import Register from './Register';
 
-function Login() {
+function Login({setToken}) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
+
+    var token2 = {
+        token: "test",
+    }
 
     async function loginUser(credentials) {
         return fetch('http://localhost:8080/api/v1/login', {
@@ -17,11 +23,13 @@ function Login() {
 
     const handleSubmit = async e => {
     e.preventDefault();
+    
     const token = await loginUser({
         username,
         password
     });
-    //setToken(token);
+    console.log(token);
+    setToken(token);
     }
 
     return (
@@ -40,6 +48,7 @@ function Login() {
                 <button type="submit">Submit</button>
             </div>
             </form>
+            <Register/>
         </div>
     )
 }

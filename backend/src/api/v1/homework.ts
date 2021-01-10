@@ -22,7 +22,7 @@ app.post('/add', async (req, res) => {
             user : userInfo._id,
             type: req.body.type,
             input: req.body.input,
-        }, (err) => {
+        }, (err, _data) => {
             if (err) {
                 res.status(406);
                 res.json({ title: "error creating new homework", message: err.message});
