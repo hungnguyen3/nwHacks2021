@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import './App.css';
 import Login from './pages/Login';
+import Landing from './pages/Landing';
 import ManageStudents from './pages/ManageStudents';
 import AddQuestions from './pages/AddQuestions';
 import SendSMS from './pages/SendSMS';
@@ -60,7 +61,7 @@ const App: React.FC = () => {
                             return token ? (
                                 <ManageStudents {...props} sessionId={token} />
                             ) : (
-                                <Redirect to="/login" />
+                                <Redirect to="/landing" />
                             );
                         }}
                     />
@@ -71,7 +72,7 @@ const App: React.FC = () => {
                             return token ? (
                                 <AddQuestions {...props} sessionId={token} />
                             ) : (
-                                <Redirect to="/login" />
+                                <Redirect to="/landing" />
                             );
                         }}
                     />
@@ -82,7 +83,18 @@ const App: React.FC = () => {
                             return token ? (
                                 <SendSMS {...props} sessionId={token} />
                             ) : (
-                                <Redirect to="/login" />
+                                <Redirect to="/landing" />
+                            );
+                        }}
+                    />
+                    <Route
+                        exact
+                        path="/landing"
+                        render={props => {
+                            return token ? (
+                                <Redirect to="/" />
+                            ) : (
+                                <Landing {...props} />
                             );
                         }}
                     />
@@ -98,7 +110,7 @@ const App: React.FC = () => {
                                     />
                                 </>
                             ) : (
-                                <Redirect to="/login" />
+                                <Redirect to="/landing" />
                             );
                         }}
                     />
