@@ -5,9 +5,9 @@ import { Router } from 'express';
 
 import { User } from '../../models/User';
 
-const app = Router();
+const router = Router();
 
-app.post('/', (req, res) => {
+router.post('/', (req, res) => {
     const hash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(12));
     User.create(
         {
@@ -28,4 +28,4 @@ app.post('/', (req, res) => {
     );
 });
 
-export default app;
+export default router;

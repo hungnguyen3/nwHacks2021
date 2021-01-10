@@ -26,6 +26,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.11.11",
+    "twilio": "^3.54.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
