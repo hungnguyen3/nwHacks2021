@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import Logout from './functions/Logout';
 import NavbarContainer from './pages/NavbarContainer';
 
+import clipboard from './assets/clipboard.png';
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -42,66 +44,79 @@ const App: React.FC = () => {
                         justifyContent: 'center',
                     }}
                 >
-                    <Route
-                        exact
-                        path="/login"
-                        render={props => {
-                            return token ? (
-                                <Redirect to="/" />
-                            ) : (
-                                <Login {...props} setToken={setToken} />
-                            );
-                        }}
+                    <img
+                        src={clipboard}
+                        alt="clipboard"
+                        className="clipboard"
                     />
-                    <Route
-                        exact
-                        path="/students"
-                        render={props => {
-                            return token ? (
-                                <ManageStudents {...props} sessionId={token} />
-                            ) : (
-                                <Redirect to="/login" />
-                            );
-                        }}
-                    />
-                    <Route
-                        exact
-                        path="/questions"
-                        render={props => {
-                            return token ? (
-                                <AddQuestions {...props} sessionId={token} />
-                            ) : (
-                                <Redirect to="/login" />
-                            );
-                        }}
-                    />
-                    <Route
-                        exact
-                        path="/sms"
-                        render={props => {
-                            return token ? (
-                                <SendSMS {...props} sessionId={token} />
-                            ) : (
-                                <Redirect to="/login" />
-                            );
-                        }}
-                    />
-                    <Route
-                        exact
-                        path="/"
-                        render={() => {
-                            return token ? (
-                                <>
-                                    <Logout
+                    <div style={{ zIndex: 1 }}>
+                        <Route
+                            exact
+                            path="/login"
+                            render={props => {
+                                return token ? (
+                                    <Redirect to="/" />
+                                ) : (
+                                    <Login {...props} setToken={setToken} />
+                                );
+                            }}
+                        />
+                        <Route
+                            exact
+                            path="/students"
+                            render={props => {
+                                return token ? (
+                                    <ManageStudents
+                                        {...props}
                                         sessionId={token}
-                                        setToken={setToken}
                                     />
-                                </>
-                            ) : (
-                                <Redirect to="/login" />
-                            );
-                        }}
-                    />
+                                ) : (
+                                    <Redirect to="/login" />
+                                );
+                            }}
+                        />
+                        <Route
+                            exact
+                            path="/questions"
+                            render={props => {
+                                return token ? (
+                                    <AddQuestions
+                                        {...props}
+                                        sessionId={token}
+                                    />
+                                ) : (
+                                    <Redirect to="/login" />
+                                );
+                            }}
+                        />
+                        <Route
+                            exact
+                            path="/sms"
+                            render={props => {
+                                return token ? (
+                                    <SendSMS {...props} sessionId={token} />
+                                ) : (
+                                    <Redirect to="/login" />
+                                );
+                            }}
+                        />
+                        <Route
+                            exact
+                            path="/"
+                            render={() => {
+                                return token ? (
+                                    <>
+                                        <Logout
+                                            sessionId={token}
+                                            setToken={setToken}
+                                        />
+                                    </>
+                                ) : (
+                                    <Redirect to="/login" />
+                                );
+                            }}
+                        />
+                    </div>
                 </div>
             </Switch>
         </Router>

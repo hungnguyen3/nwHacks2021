@@ -12,6 +12,15 @@
   height: 100vh;
 }
 
+.clipboard {
+  position: absolute;
+  bottom: 0;
+  width: 75%;
+  margin-left: 0;
+  margin-right: 0;
+  z-index: 0;
+}
+
 .center2 {
   display: 'flex';
   justifyContent: 'center';
