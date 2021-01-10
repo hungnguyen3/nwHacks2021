@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/add', async (req, res) => {
-    const userInfo = await User.findOne({username: req.body.username})
+    const userInfo = await User.findOne({sessionId: req.body.sessionId})
     if(userInfo == null){
         res.status(406);
         res.json({ title: "user doesn't exist"});
@@ -22,7 +22,7 @@ app.post('/add', async (req, res) => {
             user : userInfo._id,
             type: req.body.type,
             input: req.body.input,
-        }, (err, data) => {
+        }, (err) => {
             if (err) {
                 res.status(406);
                 res.json({ title: "error creating new homework", message: err.message});
@@ -30,6 +30,27 @@ app.post('/add', async (req, res) => {
                 res.json({title: "successfully create new homework"});
             }
         })
+    }
+})
+
+app.post('/remove', async (req, res) =>{
+    const userInfo = await User.findOne({sessionId: req.body.sessionId})
+    if(userInfo == null){
+        res.status(406);
+        res.json({ title: "user doesn't exist"});
+    }
+    else{
+        Homework.deleteOne({
+            user: userInfo._id,
+            type: req.body.type,
+            input: req.body.input,
+        }, undefined, (err: any) => {
+            if (err) {
+                res.send({ title: "error removing homework", message: err.message });
+            } else {
+                res.send({ message: "homework deleted" });
+            }
+        });
     }
 })
 
