@@ -1,9 +1,9 @@
 import React from 'react'
-import RefreshStudents from '../functions/RefreshStudents.js'
+import RefreshStudents from './RefreshStudents'
 
 //api/v1/contacts/
 
-function DeleteStudent({sessionId, uId, setStudents}) {
+function DeleteStudent({sessionId, uId}) {
     async function getStudents(info){
         let url =  'http://localhost:8080/api/v1/contacts/' + uId;
         return fetch(url, {
@@ -16,7 +16,7 @@ function DeleteStudent({sessionId, uId, setStudents}) {
             .then(data => data.json())
         }
 
-    const handleGetStudents = async e => {
+    const handleGetStudents = async () => {
         const data = await getStudents({
             sessionId: sessionId,
         });

@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import Login from './pages/Login.js';
+import Login from './pages/Login';
 import Managestudents from './pages/ManageStudents';
 import AddQuestions from './pages/AddQuestions';
 import SendSMS from './pages/SendSMS';
