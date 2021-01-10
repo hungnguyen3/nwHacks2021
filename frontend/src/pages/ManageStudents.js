@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import List from '../functions/List.js'
 import StudentsList from '../functions/StudentsList.js'
 
-//api/v1/
+//api/v1/contacts/id
 
 function Managestudents({sessionId}) {
     const[students, setStudents] = useState([{"_id":{"$oid":"5ffa70ac2abae473000bcdd1"},"user":{"$oid":"5ffa5db0c1c7da5b944c7437"},"firstName":"Hung","lastName":"Nguyen","phone":7781234567},{"_id":{"$oid":"5ffa70ac2abae473000bcdd1"},"user":{"$oid":"5ffa5db0c1c7da5b944c7437"},"firstName":"Hung","lastName":"Nguyen","phone":7781234567}])
