@@ -1,5 +1,6 @@
 import React from 'react';
-import List from './List';
+import SList from './SList';
+import Card from '@material-ui/core/Card';
 
 interface Props {
     students: Contact[];
@@ -20,10 +21,10 @@ const StudentsList: React.FC<Props> = ({
     handleGetStudents,
 }) => {
     return (
-        <>
+        <div>
             {students.map(student => {
                 return (
-                    <List
+                    <SList
                         key={student._id}
                         list={student}
                         sessionId={sessionId}
@@ -31,7 +32,7 @@ const StudentsList: React.FC<Props> = ({
                     />
                 );
             })}
-        </>
+        </div>
     );
 };
 
