@@ -1,13 +1,28 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import axios from 'axios';
 import React from 'react';
 
 interface Props {
-    setToken(e: React.MouseEvent): void;
+    sessionId: string;
+    setToken(s: string): void;
 }
 
-const Logout: React.FC<Props> = ({ setToken }) => {
+const handleLogout = (sessionId: string, setToken: (token: string) => void) => {
+    axios
+        .post('http://localhost:8080/api/v1/logout', {
+            sessionId,
+        })
+        .then(() => setToken(''))
+        .catch(() => setToken(''));
+};
+
+const Logout: React.FC<Props> = ({ sessionId, setToken }) => {
     return (
         <div>
-            <button onClick={setToken}>Log Out</button>
+            <button onClick={() => handleLogout(sessionId, setToken)}>
+                Log Out
+            </button>
         </div>
     );
 };
