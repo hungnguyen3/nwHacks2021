@@ -21,9 +21,7 @@ Introducing ***smschool*** Education for all.
 ## How we built it
 The frontend of the application was prototyped using **Figma** and  **Photoshop** and developed using **React** while **MongoDB** was incorporated for the backend. We also used **Twilio API** to send SMS from our web app. 
 
-![MongoDB](https://nakedsecurity.sophos.com/wp-content/uploads/sites/2/2017/01/mongodb.png?resize=780,408)
-![React](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png)
-![Figma](https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/220px-Figma-logo.svg.png)
+![MongoDB](https://i.imgur.com/AX9mIEI.png)
 
 ## Challenges we ran into
 We started off using Javascript for the frontend, and we should've started off using Typescript instead. We also ran into some issues with eslint which took us a long time to troubleshoot. We choose things we weren't familiar with, thus we ran into a lot of unfamiliar problems.
