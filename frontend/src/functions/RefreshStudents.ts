@@ -12,8 +12,8 @@ function RefreshStudents({sessionId, setStudents}) {
             .then(data => data.json())
         }
 
-    const handleGetStudents = async e => {
-        const data = await getStudents({});
+    const handleGetStudents = async () => {
+        const data = await getStudents();
         console.log(data);
         console.log(data.students[0]);
         setStudents(data.students);

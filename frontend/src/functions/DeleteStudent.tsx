@@ -1,11 +1,10 @@
 import React from 'react'
-import RefreshStudents from '../functions/RefreshStudents.js'
-import handleGetStudents from '../pages/ManageStudents'
+import RefreshStudents from './RefreshStudents'
 
 //api/v1/contacts/
 
-function DeleteStudent({sessionId, uId, handleGetStudents}) {
-    async function getStudents(info){
+function DeleteStudent({sessionId, uId}: any) {
+    async function getStudents(info: object){
         let url =  'http://localhost:8080/api/v1/contacts/' + uId;
         return fetch(url, {
             method: 'DELETE',
@@ -17,7 +16,7 @@ function DeleteStudent({sessionId, uId, handleGetStudents}) {
             .then(data => data.json())
         }
 
-    const handleDeleteStudents = async e => {
+    const handleGetStudents = async () => {
         const data = await getStudents({
             sessionId: sessionId,
         });
