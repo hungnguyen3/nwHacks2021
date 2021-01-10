@@ -17,8 +17,8 @@ app.post('/get', (req, res) => {
             res.status(401);
             res.json({ message: "not authorized" });
         } else {
-            const students = await Homework.find({ user: authResult.userId });
-            res.json({ students });
+            const homework = await Homework.find({ user: authResult.userId });
+            res.json({ homework });
         }
     })
 })
