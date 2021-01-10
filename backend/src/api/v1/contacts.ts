@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { Contact } from '../../models/Contact'
 
-import { authenticate } from './login';
+import { authenticate } from './util';
 
 const app = Router();
 
