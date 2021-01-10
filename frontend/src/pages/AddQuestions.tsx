@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import QuestionBank from '../functions/QuestionBank';
 
 function AddQuestions({ sessionId }:any) {
-    const [questionBank, setQuestionBank] = useState()
-    const [radioButton, setRadioButton] = useState('')
-    const [facts, setFacts] = useState('');
-    const [questions, setQuestions] = useState('');
-    const [answers, setAnswers] = useState('');
+    const [questionBank, setQuestionBank] = useState([])
+    const [radioButton, setRadioButton] = useState("")
+    const [facts, setFacts] = useState("");
+    const [questions, setQuestions] = useState("");
+    const [answers, setAnswers] = useState("");
 
     async function addQuestion(credentials : any) {
         console.log(credentials)
@@ -36,9 +37,34 @@ function AddQuestions({ sessionId }:any) {
         })());
     }
 
+    async function getQuestions() {
+        return fetch('http://localhost:8080/api/v1/homework/get', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ sessionId: sessionId })
+        })
+            .then(data => data.json())
+    }
+
+
+    const handleGetQuestions = async () => {
+        const data = await getQuestions({});
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        console.log(data.homework);
+        setQuestionBank(data.homework);
+    }
+
+    // useEffect(()=>{
+    //     handleGetQuestions();
+    // }, []);
+
     return (
         <div>
             <h1>Question Bank</h1>
+            <QuestionBank questionBank = {questionBank} sessionId = {sessionId} handleGetQuestions = {handleGetQuestions}/>
+
             <h1>Add Questions & Facts</h1>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -66,7 +92,7 @@ function AddQuestions({ sessionId }:any) {
                         </label>
                 }
                 <div>
-                    <button type="submit">Add</button>
+                    <button type="submit" onClick={() => handleGetQuestions()}>Add</button>
                 </div>
             </form>
         </div>
