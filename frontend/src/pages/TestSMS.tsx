@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { HomeWork } from '@material-ui/icons';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {
     DragDropContext,
@@ -12,6 +14,7 @@ import {
     DropResult,
 } from 'react-beautiful-dnd';
 import { v4 as uuid } from 'uuid';
+import { Homework } from '../functions/QuestionBank';
 
 const onDragEnd = (
     result: DropResult,
@@ -63,6 +66,7 @@ const onDragEnd = (
 
 interface Props {
     itemsFromBackend: TestItem[];
+    sessionId: string;
 }
 
 export interface TestItem {
@@ -70,7 +74,7 @@ export interface TestItem {
     content: string;
 }
 
-const App: React.FC<Props> = ({ itemsFromBackend }) => {
+const TestSMS: React.FC<Props> = ({ itemsFromBackend, sessionId }) => {
     const testitemsFromBackend = [
         { id: '5ffae5185b4dd379c805a281', content: 'test' },
         { id: '5ffae5185b4dd379c805a282', content: 'test' },
@@ -103,6 +107,33 @@ const App: React.FC<Props> = ({ itemsFromBackend }) => {
 
     //{console.log("help")}
     //{console.log(columnsFromBackend)}
+
+    useEffect(() => {
+        axios
+            .post('http://localhost:8080/api/v1/homework/get', {
+                sessionId,
+            })
+            .then(res => {
+                setColumns({
+                    [uuid()]: {
+                        name: 'Question Bank',
+                        items: res.data.homework.reduce(
+                            (res: TestItem[], v: Homework) => {
+                                res.push({ id: v._id, content: v.input[0] });
+                                return res;
+                            },
+                            []
+                        ),
+                    },
+                    [uuid()]: {
+                        name: 'To Send',
+                        items: [],
+                    },
+                });
+                console.log(columns);
+            })
+            .catch(err => console.error('a', err));
+    }, []);
 
     const [columns, setColumns] = useState(columnsFromBackend);
 
@@ -219,4 +250,4 @@ const App: React.FC<Props> = ({ itemsFromBackend }) => {
     );
 };
 
-export default App;
+export default TestSMS;

@@ -15,6 +15,10 @@ app.use('/api', api);
 
 app.use('/', express.static(path.join(__dirname, '../../frontend/build')));
 
+app.get('/*', (_req, res) =>
+    res.sendFile(path.join(__dirname, '../../frontend/build/index.html'))
+);
+
 db.once('open', () => {
     app.listen(port, () => console.log(`LISTENING on ${port}`));
 });

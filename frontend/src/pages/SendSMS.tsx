@@ -67,7 +67,11 @@ const SendSMS: React.FC<Props> = ({ sessionId }) => {
 
     return (
         <div>
-            <TestSMS itemsFromBackend={homeworkFromBackend}></TestSMS>
+            {gethomeworkFromBackend()}
+            <TestSMS
+                sessionId={sessionId}
+                itemsFromBackend={homeworkFromBackend}
+            ></TestSMS>
         </div>
     );
 };
