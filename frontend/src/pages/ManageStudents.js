@@ -29,11 +29,25 @@ function Managestudents({sessionId}) {
         firstName,
         lastName,
         phone,
-    });
-
-    console.log(token);
-
+        });
     }
+
+    async function getStudents(){
+        return fetch('http://localhost:8080/api/v1/contacts/get', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({sessionId:sessionId})
+          })
+            .then(data => data.json())
+        }
+
+    const handleGetStudents = async e => {
+        const data = await getStudents({});
+        console.log(data);
+        setStudents(data);
+        }
 
     return (
         <div>
@@ -59,6 +73,8 @@ function Managestudents({sessionId}) {
                 <button type="submit">Add</button>
             </div>
             </form>
+
+            <button onClick={()=> handleGetStudents()}>Refresh</button>
         </div>
         
     )
