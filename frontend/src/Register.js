@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 
-function Login() {
+function Register() {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
     async function loginUser(credentials) {
-        return fetch('api/login', {
+        console.log(credentials)
+        return fetch('api/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -26,7 +27,7 @@ function Login() {
 
     return (
         <div>
-            <h1>Login</h1>
+            <h1>Regsiter</h1>
             <form onSubmit={handleSubmit}>
             <label>
                 <p>Username</p>
@@ -44,4 +45,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Register

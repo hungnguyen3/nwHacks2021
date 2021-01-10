@@ -4,6 +4,7 @@ import Login from './Login.js';
 import Managestudents from './ManageStudents';
 import AddQuestions from './AddQuestions';
 import SendSMS from './SendSMS';
+import Register from './Register';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Managestudents></Managestudents>
       <AddQuestions></AddQuestions>
       <SendSMS></SendSMS>
+      <Register></Register>
     </div>
   );
 }
