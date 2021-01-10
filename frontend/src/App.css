@@ -9,6 +9,7 @@
 
 .background {
   background-image: url("./assets/gridbackground.png");
+  height: 100vh;
 }
 
 .center2 {
