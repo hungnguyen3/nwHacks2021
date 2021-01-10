@@ -27,10 +27,10 @@ function AddQuestions({ sessionId }:any) {
             let obj = { sessionId: sessionId };
             if (radioButton === "facts") {
                 obj.type = 1;
-                obj.content = [facts];
+                obj.input = [facts];
             } else {
                 obj.type = 2;
-                obj.content = [questions, answers]
+                obj.input = [questions, answers]
             }
             return obj;
         })());
