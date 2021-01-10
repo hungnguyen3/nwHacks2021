@@ -32,40 +32,75 @@ const App: React.FC = () => {
     return (
         <Router>
             <Switch>
-                <Route
-                    path="/login"
-                    render={props => {
-                        return token ? (
-                            <Redirect to="/" />
-                        ) : (
-                            <Login {...props} setToken={setToken} />
-                        );
+                <div
+                    className="background"
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                     }}
-                />
-                <Route
-                    path="/"
-                    render={() => {
-                        return token ? (
-                            <div
-                                className="background"
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                <div>
-                                    <ManageStudents sessionId={token} />
-                                </div>
-                                <AddQuestions sessionId={token} />
-                                <SendSMS sessionId={token} />
-                                <Logout sessionId={token} setToken={setToken} />
-                            </div>
-                        ) : (
-                            <Redirect to="/login" />
-                        );
-                    }}
-                />
+                >
+                    <Route
+                        exact
+                        path="/login"
+                        render={props => {
+                            return token ? (
+                                <Redirect to="/" />
+                            ) : (
+                                <Login {...props} setToken={setToken} />
+                            );
+                        }}
+                    />
+                    <Route
+                        exact
+                        path="/students"
+                        render={props => {
+                            return token ? (
+                                <ManageStudents {...props} sessionId={token} />
+                            ) : (
+                                <Redirect to="/login" />
+                            );
+                        }}
+                    />
+                    <Route
+                        exact
+                        path="/questions"
+                        render={props => {
+                            return token ? (
+                                <AddQuestions {...props} sessionId={token} />
+                            ) : (
+                                <Redirect to="/login" />
+                            );
+                        }}
+                    />
+                    <Route
+                        exact
+                        path="/sms"
+                        render={props => {
+                            return token ? (
+                                <SendSMS {...props} sessionId={token} />
+                            ) : (
+                                <Redirect to="/login" />
+                            );
+                        }}
+                    />
+                    <Route
+                        exact
+                        path="/"
+                        render={() => {
+                            return token ? (
+                                <>
+                                    <Logout
+                                        sessionId={token}
+                                        setToken={setToken}
+                                    />
+                                </>
+                            ) : (
+                                <Redirect to="/login" />
+                            );
+                        }}
+                    />
+                </div>
             </Switch>
         </Router>
     );
