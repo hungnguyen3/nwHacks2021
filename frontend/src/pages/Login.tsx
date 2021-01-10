@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button } from '@material-ui/core';
 
 import axios, { AxiosResponse } from 'axios';
 interface Props {
@@ -56,7 +55,7 @@ const Login: React.FC<Props> = ({ setToken }) => {
                     <button type="submit">Submit</button>
                 </div>
             </form>
-            <button onClick={() => handleRegister()}>Register</button>
+            <button onClick={e => handleRegister(e)}>Register</button>
         </div>
     );
 };

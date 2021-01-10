@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import QuestionBank from '../functions/QuestionBank';
 
 interface Props {
@@ -117,6 +117,6 @@ const AddQuestions: React.FC<Props> = ({ sessionId }) => {
             </form>
         </div>
     );
-}
+};
 
 export default AddQuestions;

@@ -1,9 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react';
 
 //api/v1/contacts/
 
-function DeleteStudent({ sessionId, uId }: any) {
+interface Props {
+    sessionId: string;
+    uId: string;
+}
+
+const DeleteStudent: React.FC<Props> = ({ sessionId, uId }) => {
     async function getStudents(info: { sessionId: string }) {
         const url = `http://localhost:8080/api/v1/contacts/${uId}`;
         return fetch(url, {
@@ -15,12 +21,12 @@ function DeleteStudent({ sessionId, uId }: any) {
         }).then(data => data.json());
     }
 
-    const handleGetStudents = async () => {
-        const data = await getStudents({
-            sessionId: sessionId,
-        });
-        console.log(data);
-    };
+    // const handleGetStudents = async () => {
+    //     const data = await getStudents({
+    //         sessionId: sessionId,
+    //     });
+    //     console.log(data);
+    // };
 
     return (
         <button
@@ -35,6 +41,6 @@ function DeleteStudent({ sessionId, uId }: any) {
             Delete
         </button>
     );
-}
+};
 
 export default DeleteStudent;
