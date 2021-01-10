@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/add', async (req, res) => {
-    const userInfo = await User.findOne({username: req.body.username})
+    const userInfo = await User.findOne({ sessionId: req.body.sessionId})
     if(userInfo == null){
         res.status(406);
         res.json({ title: "user doesn't exist"});
