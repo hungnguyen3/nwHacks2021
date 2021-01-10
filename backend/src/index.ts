@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import path from 'path';
 
 import api from './api';
 import db from './db';
@@ -12,9 +13,7 @@ app.use(express.json());
 
 app.use('/api', api);
 
-app.get('/', (_req, res) => { 
-    res.send('a');
-});
+app.use('/', express.static(path.join(__dirname, "../../frontend/build")));
 
 db.once('open', () => {
     app.listen(port, () => console.log(`LISTENING on ${port}`));

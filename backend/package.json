@@ -8,7 +8,9 @@
     "build": "tsc",
     "clean": "rimraf dist",
     "prestart": "npm run build",
-    "start": "node -r dotenv/config dist/index.js"
+    "start": "node -r dotenv/config dist/index.js",
+    "prerebuild": "npm run clean",
+    "rebuild": "npm run build"
   },
   "keywords": [],
   "author": "",
