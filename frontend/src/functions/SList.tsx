@@ -48,7 +48,7 @@ const SList: React.FC<Props> = ({ list, sessionId, handleGetStudents }) => {
                 <DeleteStudent
                     sessionId={sessionId}
                     uId={list._id}
-                    // handleGetStudents={handleGetStudents}
+                    handleGetStudents={handleGetStudents}
                 />
             </Card>
         </div>
