@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import List from '../functions/List.js'
 import StudentsList from '../functions/StudentsList.js'
 import RefreshStudents from '../functions/RefreshStudents'
@@ -53,10 +53,14 @@ function Managestudents({sessionId}) {
         setStudents(data.students);
         }
 
+    useEffect(() => {
+        handleGetStudents();
+    }, [])
+
     return (
         <div>
             <h1>Manage Students</h1>
-            <StudentsList students={students} sessionId={sessionId} setStudents={setStudents}/>
+            <StudentsList students={students} sessionId={sessionId} handleGetStudents={handleGetStudents}/>
 
             <h1>Add New Student</h1>
 
@@ -74,7 +78,7 @@ function Managestudents({sessionId}) {
                 <input type="text" onChange={e => setPhone(e.target.value)}/>
             </label>
             <div>
-                <button type="submit">Add</button>
+                <button type="submit" onClick={()=> setTimeout(() => {  handleGetStudents(); }, 1000)}>Add</button>
             </div>
             </form>
 

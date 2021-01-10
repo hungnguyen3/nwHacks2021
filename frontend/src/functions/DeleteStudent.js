@@ -1,9 +1,10 @@
 import React from 'react'
 import RefreshStudents from '../functions/RefreshStudents.js'
+import handleGetStudents from '../pages/ManageStudents'
 
 //api/v1/contacts/
 
-function DeleteStudent({sessionId, uId, setStudents}) {
+function DeleteStudent({sessionId, uId, handleGetStudents}) {
     async function getStudents(info){
         let url =  'http://localhost:8080/api/v1/contacts/' + uId;
         return fetch(url, {
@@ -16,7 +17,7 @@ function DeleteStudent({sessionId, uId, setStudents}) {
             .then(data => data.json())
         }
 
-    const handleGetStudents = async e => {
+    const handleDeleteStudents = async e => {
         const data = await getStudents({
             sessionId: sessionId,
         });
@@ -24,7 +25,7 @@ function DeleteStudent({sessionId, uId, setStudents}) {
         }
 
     return (
-        <button onClick={()=>handleGetStudents()}>Delete</button>
+            <button onClick={()=>handleDeleteStudents().then(setTimeout(() => {  handleGetStudents(); }, 1000))}>Delete</button>
     )
 }
 
