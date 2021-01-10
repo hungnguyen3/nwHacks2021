@@ -46,16 +46,15 @@ function Managestudents({ sessionId }: any) {
     }
 
     const handleGetStudents = async () => {
-        const data = await getStudents({});
+        const data = await getStudents();
         console.log(data);
-        console.log(data.students[0]);
+        //console.log(data.students[0]);
         setStudents(data.students);
     }
 
     useEffect(() => {
         handleGetStudents();
-    });
-
+    }, []);
 
     return (
         <div>
