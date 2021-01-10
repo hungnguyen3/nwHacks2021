@@ -1,6 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import React, { useState } from 'react';
 import QuestionBank, { Homework } from '../functions/QuestionBank';
+import { TextField } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 interface Props {
     sessionId: string;
@@ -94,37 +96,69 @@ const AddQuestions: React.FC<Props> = ({ sessionId }) => {
                 </div>
                 {radioButton == 'qa' ? (
                     <>
-                        <label>
-                            <p>Question</p>
-                            <input
+                        <div>
+                            <TextField
+                                id="outlined-basic"
+                                variant="outlined"
+                                label="Question"
                                 type="text"
-                                onChange={e => setQuestions(e.target.value)}
-                            />
-                        </label>
-                        <label>
-                            <p>Answer</p>
-                            <input
+                            >
+                                <p>Phone</p>
+                                <input
+                                    type="text"
+                                    onChange={e => setQuestions(e.target.value)}
+                                />
+                            </TextField>
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined-basic"
+                                variant="outlined"
+                                label="Answer"
                                 type="text"
-                                onChange={e => setAnswers(e.target.value)}
-                            />
-                        </label>
+                            >
+                                <p>Phone</p>
+                                <input
+                                    type="text"
+                                    onChange={e => setAnswers(e.target.value)}
+                                />
+                            </TextField>
+                        </div>
                     </>
                 ) : (
-                    <label>
-                        <p>Fact</p>
-                        <input
+                    <div>
+                        <TextField
+                            id="outlined-basic"
+                            variant="outlined"
+                            label="Fact"
                             type="text"
-                            onChange={e => setFacts(e.target.value)}
-                        />
-                    </label>
+                        >
+                            <p>Phone</p>
+                            <input
+                                type="text"
+                                onChange={e => setFacts(e.target.value)}
+                            />
+                        </TextField>
+                    </div>
                 )}
                 <div>
-                    <button type="submit" onClick={() => handleGetQuestions()}>
+                    <Button
+                        style={{ minWidth: 110 }}
+                        variant="contained"
+                        type="submit"
+                        onClick={() => handleGetQuestions()}
+                    >
                         Add
-                    </button>
+                    </Button>
                 </div>
             </form>
-            <button onClick={() => handleGetQuestions()}>Refresh</button>
+            <Button
+                style={{ minWidth: 110 }}
+                variant="contained"
+                onClick={() => handleGetQuestions()}
+            >
+                Refresh
+            </Button>
         </div>
     );
 };
