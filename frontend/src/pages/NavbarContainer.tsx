@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../smschool_icon.png';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function NavbarContainer() {
@@ -12,10 +13,12 @@ function NavbarContainer() {
 
     return (
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+            <img src={logo} height="80" width="120"></img>
             <Link className="navbar-brand mr-auto" to="/">
                 Home
             </Link>
-            {/* <button
+
+            <button
                 className="navbar-toggler ml-auto"
                 type="button"
                 data-toggle="collapse"
@@ -23,7 +26,7 @@ function NavbarContainer() {
                 onClick={handleNavCollapse}
             >
                 <span className="navbar-toggler-icon"></span>
-            </button> */}
+            </button>
 
             {/* renders the nav bar according to the state */}
             <div
@@ -33,19 +36,19 @@ function NavbarContainer() {
                 id="navbarNav"
             >
                 <ul className="navbar-nav ml-auto">
+                    {/* <li className="nav-item">
+                        <Link className="nav-link" to="/login">
+                            Login
+                        </Link>
+                    </li> */}
                     <li className="nav-item">
                         <Link className="nav-link" to="/students">
-                            Student Contacts
+                            Students
                         </Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/questions">
                             Questions
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/login">
-                            Login
                         </Link>
                     </li>
                     <li className="nav-item">
