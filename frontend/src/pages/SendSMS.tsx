@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import TestSMS, { TestItem } from './TestSMS';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
 
 interface Props {
     sessionId: string;
@@ -67,6 +68,9 @@ const SendSMS: React.FC<Props> = ({ sessionId }) => {
                 sessionId={sessionId}
                 itemsFromBackend={homeworkFromBackend}
             ></TestSMS>
+            <Button style={{ minWidth: 110 }} variant="contained">
+                Send
+            </Button>
         </div>
     );
 };
