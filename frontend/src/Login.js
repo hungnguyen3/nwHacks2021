@@ -5,7 +5,7 @@ function Login() {
     const [password, setPassword] = useState();
 
     async function loginUser(credentials) {
-        return fetch('api/login', {
+        return fetch('http://localhost:8080/api/v1/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
