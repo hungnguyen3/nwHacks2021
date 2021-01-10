@@ -44,7 +44,15 @@ const Login: React.FC<Props> = ({ setToken }) => {
                 justifyContent: 'center',
             }}
         >
-            <div>
+            <div
+                style={{
+                    backgroundColor: 'lightblue',
+                    padding: 20,
+                    paddingLeft: 100,
+                    paddingRight: 100,
+                    borderRadius: 20,
+                }}
+            >
                 <h1>Login</h1>
                 <form onSubmit={handleSubmit}>
                     <label>
@@ -76,8 +84,12 @@ const Login: React.FC<Props> = ({ setToken }) => {
                     >
                         <div>
                             <p> </p>
-                            <Button variant="contained" type="submit">
-                                Submit
+                            <Button
+                                style={{ minWidth: 110 }}
+                                variant="contained"
+                                type="submit"
+                            >
+                                Login
                             </Button>
                         </div>
                     </div>
@@ -92,6 +104,7 @@ const Login: React.FC<Props> = ({ setToken }) => {
                     <div>
                         <p></p>
                         <Button
+                            style={{ minWidth: 110 }}
                             variant="contained"
                             onClick={e => handleRegister(e)}
                         >
