@@ -5,12 +5,6 @@ import { User } from '../../../models/User';
 
 const app = Router();
 
-app.get('/', (req, res) => {
-    res.json({
-        message: req.originalUrl
-    })
-});
-
 app.post('/', (req, res) => {
     const hash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(12));
     User.create({
