@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import StudentsList from '../functions/StudentsList';
 
 import axios from 'axios';
+import { TextField } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 //api/v1/contacts/id
 interface Props {
@@ -70,29 +72,52 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
             <h1>Add New Student</h1>
 
             <form onSubmit={handleSubmit}>
-                <label>
-                    <p>First Name</p>
-                    <input
-                        type="text"
-                        onChange={e => setFirstName(e.target.value)}
-                    />
-                </label>
-                <label>
-                    <p>Last Name</p>
-                    <input
-                        type="text"
-                        onChange={e => setLastName(e.target.value)}
-                    />
-                </label>
-                <label>
-                    <p>Phone</p>
-                    <input
-                        type="text"
-                        onChange={e => setPhone(e.target.value)}
-                    />
-                </label>
                 <div>
-                    <button
+                    <TextField
+                        id="outlined-basic"
+                        variant="outlined"
+                        label="First Name"
+                        type="text"
+                    >
+                        <p>First Name</p>
+                        <input
+                            type="text"
+                            onChange={e => setFirstName(e.target.value)}
+                        />
+                    </TextField>
+                </div>
+                <div>
+                    <TextField
+                        id="outlined-basic"
+                        variant="outlined"
+                        label="Last Name"
+                        type="text"
+                    >
+                        <p>Last Name</p>
+                        <input
+                            type="text"
+                            onChange={e => setLastName(e.target.value)}
+                        />
+                    </TextField>
+                </div>
+                <div>
+                    <TextField
+                        id="outlined-basic"
+                        variant="outlined"
+                        label="Phone"
+                        type="text"
+                    >
+                        <p>Phone</p>
+                        <input
+                            type="text"
+                            onChange={e => setPhone(e.target.value)}
+                        />
+                    </TextField>
+                </div>
+                <div>
+                    <Button
+                        style={{ minWidth: 110 }}
+                        variant="contained"
                         type="submit"
                         onClick={() =>
                             setTimeout(() => {
@@ -101,11 +126,17 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
                         }
                     >
                         Add
-                    </button>
+                    </Button>
                 </div>
             </form>
 
-            <button onClick={() => handleGetStudents()}>Refresh</button>
+            <Button
+                style={{ minWidth: 110 }}
+                variant="contained"
+                onClick={() => handleGetStudents()}
+            >
+                Refresh
+            </Button>
         </div>
     );
 };
