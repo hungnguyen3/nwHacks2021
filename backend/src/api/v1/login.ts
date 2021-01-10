@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 
 import { User, UserDoc } from '../../models/User';
 
-const app = Router();
+const router = Router();
 
 class AuthResult {
     private readonly result: boolean;
@@ -42,7 +42,7 @@ export const authenticate = async(sessionId: string) => {
     return new AuthResult(false, null);
 }
 
-app.post('/', async (req, res) => { 
+router.post('/', async (req, res) => { 
     const user = await User.findOne({ username: req.body.username });
     if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
         res.status(401);
@@ -60,4 +60,4 @@ app.post('/', async (req, res) => {
     }
 })
 
-export default app;
+export default router;

@@ -1,15 +1,29 @@
-import { Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 
 import v1 from './v1';
 
-const app = Router();
+const router = Router();
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.json({
         message: req.originalUrl
     })
 });
 
-app.use('/v1', v1);
+router.use('/v1', v1);
 
-export default app;
+router.use((req, res, next) => {
+    res.status(404);
+    next(new Error(`Not found - ${req.originalUrl}`));
+})
+
+router.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+    const status = res.statusCode != 200 ? res.statusCode : 500;
+    const message = err.message ? err.message : "Internal Server Error";
+    res.status(status).json({
+        status,
+        message
+    });
+})
+
+export default router;

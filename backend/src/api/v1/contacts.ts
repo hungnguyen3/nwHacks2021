@@ -5,12 +5,6 @@ import { authenticate } from './login';
 
 const app = Router();
 
-app.get('/', (req, res) => {
-    res.json({
-        message: req.originalUrl
-    })
-});
-
 app.post('/get', (req, res) => {
     authenticate(req.body.sessionId).then(async (authResult) => {
         if (!authResult.ok) {
@@ -46,26 +40,23 @@ app.post('/add', (req, res) => {
     })
 })
 
-app.post('/remove', (req, res) => {
+app.delete('/:id', (req, res) => {
     authenticate(req.body.sessionId).then(authResult => {
         if (!authResult.ok) {
             res.status(401);
             res.json({ message: "not authorized" });
         } else {
             Contact.deleteOne({
-                user: authResult.userId,
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                phone: req.body.phone,
-            }, undefined, (err: any) => {
+                _id: req.params.id
+            }, undefined, err => {
                 if (err) {
-                    res.send({ title: "error", message: err.message });
+                    res.status(500).json({ message: err.message });
                 } else {
-                    res.send({ message: "deleted" });
+                    res.send({ message: `${req.params.id} deleted`});
                 }
-            });
+            })
         }
-    });
-})
+    })
+});
 
 export default app;

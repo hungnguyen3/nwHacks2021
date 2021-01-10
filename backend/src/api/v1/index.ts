@@ -6,18 +6,18 @@ import logout from './logout';
 import register from './register';
 import homework from './homework';
 
-const app = Router();
+const router = Router();
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.json({
         message: req.originalUrl
     })
 });
 
-app.use('/contacts', contacts);
-app.use('/login', login);
-app.use('/logout', logout)
-app.use('/register', register);
-app.use('/homework', homework);
+router.use('/contacts', contacts);
+router.use('/login', login);
+router.use('/logout', logout)
+router.use('/register', register);
+router.use('/homework', homework);
 
-export default app;
+export default router;
