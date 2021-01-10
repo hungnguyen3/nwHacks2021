@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Button } from '@material-ui/core';
-import Register from '../functions/Register';
 
-function Login({setToken}) {
-    const [username, setUserName] = useState();
-    const [password, setPassword] = useState();
+function Login({setToken} : any) {
+    const [username, setUserName] = useState('');
+    const [password, setPassword] = useState('');
 
-    async function loginUser(credentials) {
+    async function loginUser(credentials : any) {
         return fetch('http://localhost:8080/api/v1/login', {
           method: 'POST',
           headers: {
@@ -28,8 +27,10 @@ function Login({setToken}) {
     setToken(token.sessionId);
     }
 
-    async function registerUser(credentials) {
+    async function registerUser(credentials : any) {
+
         console.log(credentials)
+        console.log("Register")
         return fetch('http://localhost:8080/api/v1/register', {
           method: 'POST',
           headers: {
@@ -41,8 +42,7 @@ function Login({setToken}) {
        }
 
     const handleRegister = async e => {
-    e.preventDefault();
-    const token2 = await registerUser({
+    const token = await registerUser({
         username,
         password
     });
@@ -62,9 +62,10 @@ function Login({setToken}) {
             </label>
             <div>
                 <button type="submit">Submit</button>
-                <button onClick={()=>handleRegister()}> Register</button>
+                
             </div>
             </form>
+            <button onClick={()=>handleRegister()}>Register</button>
         </div>
     )
 }
