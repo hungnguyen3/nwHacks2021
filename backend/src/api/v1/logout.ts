@@ -9,24 +9,28 @@ import { authenticate } from './util';
 const app = Router();
 
 app.post('/', (req, res) => {
-    void authenticate(req.body.sessionId).then(async authResult => {
-        if (!authResult.ok) {
-            res.status(401);
-            res.json({ message: 'not logged in' });
-        } else {
-            const user = await User.findOne({ sessionId: req.body.sessionId });
-            if (user != null) {
-                void User.updateOne(
-                    { sessionId: user.sessionId },
-                    { $unset: { sessionId: 1 } },
-                    null,
-                    () => {
-                        res.send({ message: 'logged out' });
-                    }
-                );
+    authenticate(req.body.sessionId)
+        .then(async authResult => {
+            if (!authResult.ok) {
+                res.status(401);
+                res.json({ message: 'not logged in' });
+            } else {
+                const user = await User.findOne({
+                    sessionId: req.body.sessionId,
+                });
+                if (user != null) {
+                    void User.updateOne(
+                        { sessionId: user.sessionId },
+                        { $unset: { sessionId: 1 } },
+                        null,
+                        () => {
+                            res.send({ message: 'logged out' });
+                        }
+                    );
+                }
             }
-        }
-    });
+        })
+        .catch(err => console.error(err));
 });
 
 export default app;
