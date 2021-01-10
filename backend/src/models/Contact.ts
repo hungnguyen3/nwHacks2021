@@ -1,4 +1,11 @@
-import { model, Schema } from 'mongoose';
+import { Document, model, Schema } from 'mongoose';
+
+interface ContactDoc extends Document {
+    user: string,
+    firstName: string,
+    lastName: string,
+    phone: number
+}
 
 export const contactSchema = new Schema({
     user: {
@@ -20,12 +27,4 @@ export const contactSchema = new Schema({
     }
 });
 
-contactSchema.statics.findByPhone = function(phone, projection = null, callback = null) {
-    if (typeof projection == 'function') {
-        callback = projection;
-        projection = null;
-    }
-    return this.findOne({ phone }, projection, callback);
-}
-
-export const Contact = model('contact', contactSchema);
+export const Contact = model<ContactDoc>('contact', contactSchema);
