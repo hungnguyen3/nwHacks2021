@@ -6,6 +6,7 @@ import AddQuestions from './pages/AddQuestions';
 import SendSMS from './pages/SendSMS';
 import { useEffect, useState } from 'react';
 import Logout from './functions/Logout';
+import NavbarContainer from './pages/NavbarContainer';
 
 import {
     BrowserRouter as Router,
@@ -31,6 +32,7 @@ const App: React.FC = () => {
 
     return (
         <Router>
+            <NavbarContainer />
             <Switch>
                 <div
                     className="background"
