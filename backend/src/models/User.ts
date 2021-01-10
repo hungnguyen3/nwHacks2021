@@ -3,7 +3,8 @@ import { Document, model, Schema } from 'mongoose';
 interface UserDoc extends Document {
     username: string,
     password: string,
-    contact: Schema.Types.ObjectId
+    contact: Schema.Types.ObjectId,
+    sessionId: string
 }
 
 export const userSchema = new Schema({
@@ -16,11 +17,10 @@ export const userSchema = new Schema({
     contact: {
         type: Schema.Types.ObjectId,
         ref: 'contacts'
+    },
+    sessionId: {
+        type: String
     }
 });
-
-userSchema.statics.findBySession = function(sessionId) {
-    return this.findOne({ sessionId });
-}
 
 export const User = model<UserDoc>('users', userSchema);
