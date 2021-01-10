@@ -4,7 +4,7 @@ function Register() {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
-    async function loginUser(credentials) {
+    async function registerUser(credentials) {
         console.log(credentials)
         return fetch('http://localhost:8080/api/v1/register', {
           method: 'POST',
@@ -16,9 +16,9 @@ function Register() {
           .then(data => data.json())
        }
 
-    const handleSubmit = async e => {
+    const handleRegister = async e => {
     e.preventDefault();
-    const token = await loginUser({
+    const token = await registerUser({
         username,
         password
     });
@@ -27,7 +27,7 @@ function Register() {
     return (
         <div>
             <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleRegister}>
             <label>
                 <p>Username</p>
                 <input type="text" onChange={e => setUserName(e.target.value)}/>
