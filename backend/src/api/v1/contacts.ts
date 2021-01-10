@@ -39,7 +39,13 @@ app.post('/remove', async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         phone: req.body.phone,
-    })
+    }, undefined, (err: any) => {
+        if (err) {
+            res.send({ title: "error", message: err.message });
+        } else {
+            res.send({ message: "deleted" });
+        }
+    });
 })
 
 export default app;
