@@ -6,9 +6,9 @@ import { User } from '../../models/User';
 
 import { authenticate } from './util';
 
-const app = Router();
+const router = Router();
 
-app.post('/', (req, res) => {
+router.post('/', (req, res) => {
     authenticate(req.body.sessionId)
         .then(async authResult => {
             if (!authResult.ok) {
@@ -33,4 +33,4 @@ app.post('/', (req, res) => {
         .catch(err => console.error(err));
 });
 
-export default app;
+export default router;

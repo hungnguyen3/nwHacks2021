@@ -6,15 +6,15 @@ import { Homework } from '../../models/Homework';
 
 import { authenticate } from './util';
 
-const app = Router();
+const router = Router();
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.json({
         message: req.originalUrl,
     });
 });
 
-app.post('/get', (req, res) => {
+router.post('/get', (req, res) => {
     authenticate(req.body.sessionId)
         .then(async authResult => {
             if (!authResult.ok) {
@@ -30,7 +30,7 @@ app.post('/get', (req, res) => {
         .catch(err => console.error(err));
 });
 
-app.post('/add', (req, res) => {
+router.post('/add', (req, res) => {
     authenticate(req.body.sessionId)
         .then(authResult => {
             if (!authResult.ok) {
@@ -62,7 +62,7 @@ app.post('/add', (req, res) => {
         .catch(err => console.error(err));
 });
 
-app.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     authenticate(req.body.sessionId)
         .then(authResult => {
@@ -88,4 +88,4 @@ app.delete('/:id', (req, res) => {
         .catch(err => console.error(err));
 });
 
-export default app;
+export default router;

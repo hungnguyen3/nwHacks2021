@@ -5,9 +5,9 @@ import { Contact } from '../../models/Contact';
 
 import { authenticate } from './util';
 
-const app = Router();
+const router = Router();
 
-app.post('/get', (req, res) => {
+router.post('/get', (req, res) => {
     authenticate(req.body.sessionId)
         .then(async authResult => {
             if (!authResult.ok) {
@@ -23,7 +23,7 @@ app.post('/get', (req, res) => {
         .catch(err => console.error(err));
 });
 
-app.post('/add', (req, res) => {
+router.post('/add', (req, res) => {
     authenticate(req.body.sessionId)
         .then(authResult => {
             if (!authResult.ok) {
@@ -54,7 +54,7 @@ app.post('/add', (req, res) => {
         .catch(err => console.error(err));
 });
 
-app.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     authenticate(req.body.sessionId)
         .then(authResult => {
             if (!authResult.ok) {
@@ -79,4 +79,4 @@ app.delete('/:id', (req, res) => {
         .catch(err => console.error(err));
 });
 
-export default app;
+export default router;

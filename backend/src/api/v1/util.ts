@@ -24,7 +24,7 @@ class AuthResult {
 }
 
 export const authenticate = async (sessionId: string): Promise<AuthResult> => {
-    const user = await User.findOne({ sessionId });
+    const user = await User.findOne({ sessionId }, '-password');
     if (user != null) {
         return new AuthResult(true, user);
     }
