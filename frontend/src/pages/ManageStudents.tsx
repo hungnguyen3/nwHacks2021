@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, { useEffect, useState } from 'react';
-import StudentsList from '../functions/StudentsList';
+import StudentsList, { Contact } from '../functions/StudentsList';
 
 import axios from 'axios';
 import { TextField } from '@material-ui/core';
@@ -19,35 +20,38 @@ interface StudentInfo {
 }
 
 const ManageStudents: React.FC<Props> = ({ sessionId }) => {
-    const [students, setStudents] = useState([]);
+    const [students, setStudents] = useState<Contact[]>([]);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phone, setPhone] = useState('');
 
-    const addStudent = (info: StudentInfo) => {
+    const addStudent = (info: StudentInfo): Promise<Contact> => {
         console.log(info);
         return new Promise((resolve, reject) => {
             axios
                 .post('http://localhost:8080/api/v1/contacts/add', {
                     ...info,
                 })
-                .then(response => {
+                .then((response: { data: Contact }) => {
                     resolve(response.data);
                 })
                 .catch(error => reject(error));
         });
     };
 
-    const handleSubmit = async (e: { preventDefault: () => void }) => {
+    const handleSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-        const token = await addStudent({
+        addStudent({
             sessionId: sessionId,
             firstName,
             lastName,
             phone,
-        });
-
-        console.log(token);
+        })
+            .then(student => {
+                const newStudents = [...students, student];
+                setStudents(newStudents);
+            })
+            .catch(err => console.error(err));
     };
 
     const handleGetStudents = () => {
@@ -67,7 +71,7 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
             <StudentsList
                 students={students}
                 sessionId={sessionId}
-                handleGetStudents={handleGetStudents}
+                setStudents={setStudents}
             />
 
             <h1>Add New Student</h1>
@@ -115,14 +119,6 @@ const ManageStudents: React.FC<Props> = ({ sessionId }) => {
                     </Button>
                 </div>
             </form>
-
-            <Button
-                style={{ minWidth: 110 }}
-                variant="contained"
-                onClick={() => handleGetStudents()}
-            >
-                Refresh
-            </Button>
         </div>
     );
 };

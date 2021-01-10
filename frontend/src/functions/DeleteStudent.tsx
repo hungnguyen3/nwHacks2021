@@ -3,19 +3,24 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
+import { Contact } from './StudentsList';
 
 //api/v1/contacts/
 
 interface Props {
     sessionId: string;
     uId: string;
-    handleGetStudents(): void;
+    student: Contact;
+    students: Contact[];
+    setStudents(newStudents: Contact[]): void;
 }
 
 const DeleteStudent: React.FC<Props> = ({
     sessionId,
     uId,
-    handleGetStudents,
+    student,
+    students,
+    setStudents,
 }) => {
     const handleDeleteStudents = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -25,7 +30,11 @@ const DeleteStudent: React.FC<Props> = ({
                     sessionId,
                 },
             })
-            .then(resp => console.log(resp))
+            .then(resp => {
+                setStudents(
+                    students.filter(_student => _student._id != student._id)
+                );
+            })
             .catch(err => console.error(err));
     };
 

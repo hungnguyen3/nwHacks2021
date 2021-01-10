@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import DeleteStudent from './DeleteStudent';
@@ -7,7 +8,8 @@ import Card from '@material-ui/core/Card';
 interface Props {
     list: Contact;
     sessionId: string;
-    handleGetStudents(): void;
+    students: Contact[];
+    setStudents(newStudents: Contact[]): void;
 }
 
 interface Contact {
@@ -18,7 +20,7 @@ interface Contact {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const SList: React.FC<Props> = ({ list, sessionId, handleGetStudents }) => {
+const SList: React.FC<Props> = ({ list, sessionId, students, setStudents }) => {
     // function refresh() {
     //     this.props.refresh();
     // }
@@ -49,7 +51,9 @@ const SList: React.FC<Props> = ({ list, sessionId, handleGetStudents }) => {
                 <DeleteStudent
                     sessionId={sessionId}
                     uId={list._id}
-                    handleGetStudents={handleGetStudents}
+                    student={list}
+                    students={students}
+                    setStudents={setStudents}
                 />
             </Card>
         </div>

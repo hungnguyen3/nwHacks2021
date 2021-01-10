@@ -6,10 +6,10 @@ import Card from '@material-ui/core/Card';
 interface Props {
     students: Contact[];
     sessionId: string;
-    handleGetStudents(): void;
+    setStudents(newStudents: Contact[]): void;
 }
 
-interface Contact {
+export interface Contact {
     _id: string;
     firstName: string;
     lastName: string;
@@ -19,7 +19,7 @@ interface Contact {
 const StudentsList: React.FC<Props> = ({
     students,
     sessionId,
-    handleGetStudents,
+    setStudents,
 }) => {
     return (
         <div>
@@ -29,7 +29,8 @@ const StudentsList: React.FC<Props> = ({
                         key={student._id}
                         list={student}
                         sessionId={sessionId}
-                        handleGetStudents={handleGetStudents}
+                        students={students}
+                        setStudents={setStudents}
                     />
                 );
             })}
