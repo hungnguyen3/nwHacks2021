@@ -1,24 +1,25 @@
 import { Document, model, Schema } from 'mongoose';
 
 interface HomeworkDoc extends Document {
-    user: Schema.Types.ObjectId,
-    type: 1 | 2 | 3,
-    input: string,
+    user: Schema.Types.ObjectId;
+    type: 1 | 2 | 3;
+    input: string[];
 }
 
 export const homeworkSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'users',
-        required: true
+        required: true,
     },
     type: {
-        type: Number, 
+        type: Number,
         required: true,
-        enum: [1, 2, 3]
+        enum: [1, 2, 3],
     },
     input: {
-        type: [String], required: true,
+        type: [String],
+        required: true,
     },
 });
 

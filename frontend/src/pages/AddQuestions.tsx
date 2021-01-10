@@ -20,7 +20,7 @@ function AddQuestions({ sessionId }:any) {
             .then(data => data.json())
     }
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e : any) => {
         e.preventDefault();
         const token = await addQuestion((() => {
             console.log("radioButton value is")
@@ -68,27 +68,28 @@ function AddQuestions({ sessionId }:any) {
             <h1>Add Questions & Facts</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <h2>Facts</h2>
-                    <input type="radio" name="inputtype" value="facts" onChange={e => setRadioButton(e.target.value)}/>
+                    <h2>Fact</h2>
+                    <input type="radio" name="inputtype" value="facts" onChange={e => setRadioButton(e.target.value)} defaultChecked/>
                     <h2>Q&A</h2>
                     <input type="radio" name="inputtype" value="qa" onChange={e => setRadioButton(e.target.value)}/>
                 </label>
                 {
-                    radioButton == "facts" ?
+                    radioButton == "qa" ?
+                        <>
+                        <label>
+                            <p>Question</p>
+                            <input type="text" onChange={e => setQuestions(e.target.value)} />
+                        </label>
+                        <label>
+                                <p>Answer</p>
+                                <input type="text" onChange={e => setAnswers(e.target.value)} />
+                        </label>
+                        </> :
+
                         <label>
                             <p>Fact</p>
                             <input type="text" onChange={e => setFacts(e.target.value)} />
-                        </label> :
-                        <>
-                            <label>
-                                <p>Question</p>
-                                <input type="text" onChange={e => setQuestions(e.target.value)} />
-                            </label>
-                            <label>
-                                <p>Answer</p>
-                                <input type="text" onChange={e => setAnswers(e.target.value)} />
-                            </label>
-                        </>
+                        </label>
                 }
                 <div>
                     <button type="submit" onClick={() => handleGetQuestions()}>Add</button>

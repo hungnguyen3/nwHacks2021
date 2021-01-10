@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import List from '../functions/List'
 import StudentsList from '../functions/StudentsList'
 
@@ -51,6 +51,10 @@ function Managestudents({ sessionId }: any) {
         console.log(data.students[0]);
         setStudents(data.students);
     }
+
+    useEffect(() => {
+        handleGetStudents();
+    });
 
 
     return (

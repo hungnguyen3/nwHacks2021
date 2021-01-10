@@ -13,8 +13,8 @@ app.use(express.json());
 
 app.use('/api', api);
 
-app.use('/', express.static(path.join(__dirname, "../../frontend/build")));
+app.use('/', express.static(path.join(__dirname, '../../frontend/build')));
 
 db.once('open', () => {
     app.listen(port, () => console.log(`LISTENING on ${port}`));
-})
+});
