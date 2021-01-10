@@ -5,7 +5,7 @@ import StudentsList from '../functions/StudentsList.js'
 //api/v1/
 
 function Managestudents({sessionId}) {
-    const[students, setStudents] = useState([{"_id":{"$oid":"5ffa70ac2abae473000bcdd1"},"user":{"$oid":"5ffa5db0c1c7da5b944c7437"},"firstName":"Hung","lastName":"Nguyen","phone":7781234567}])
+    const[students, setStudents] = useState([{"_id":{"$oid":"5ffa70ac2abae473000bcdd1"},"user":{"$oid":"5ffa5db0c1c7da5b944c7437"},"firstName":"Hung","lastName":"Nguyen","phone":7781234567},{"_id":{"$oid":"5ffa70ac2abae473000bcdd1"},"user":{"$oid":"5ffa5db0c1c7da5b944c7437"},"firstName":"Hung","lastName":"Nguyen","phone":7781234567}])
     const[firstName, setFirstName] = useState()
     const[lastName, setLastName] = useState()
     const[phone, setPhone] = useState()
@@ -25,11 +25,13 @@ function Managestudents({sessionId}) {
     const handleSubmit = async e => {
     e.preventDefault();
     const token = await addStudent({
-        sessionId: sessionId.sessionId,
+        sessionId: sessionId,
         firstName,
         lastName,
         phone,
         });
+    
+    console.log(token);
     }
 
     async function getStudents(){
@@ -46,7 +48,8 @@ function Managestudents({sessionId}) {
     const handleGetStudents = async e => {
         const data = await getStudents({});
         console.log(data);
-        setStudents(data);
+        console.log(data.students[0]);
+        setStudents(data.students);
         }
 
     return (

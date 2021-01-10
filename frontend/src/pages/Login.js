@@ -29,7 +29,7 @@ function Login({setToken}) {
         password
     });
     console.log(token);
-    setToken(token);
+    setToken(token.sessionId);
     }
 
     return (
