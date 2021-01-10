@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import List from './List';
-import DeleteQuestion from './DeleteQuestion';
+// import DeleteQuestion from './DeleteQuestion';
 
 export interface Homework {
     _id: string;
@@ -38,11 +38,11 @@ const QuestionBank: React.FC<Props> = ({
                                     {questions.input[1]}
                                 </label>
                             )}
-                            <DeleteQuestion
+                            {/* <DeleteQuestion
                                 sessionId={sessionId}
                                 uId={questions._id}
                                 handleGetQuestions={handleGetQuestions}
-                            />
+                            /> */}
                         </label>
                     </div>
                     // <List
