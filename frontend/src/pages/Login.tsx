@@ -6,10 +6,6 @@ function Login({setToken}) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
-    var token2 = {
-        token: "test",
-    }
-
     async function loginUser(credentials) {
         return fetch('http://localhost:8080/api/v1/login', {
           method: 'POST',
@@ -32,6 +28,26 @@ function Login({setToken}) {
     setToken(token.sessionId);
     }
 
+    async function registerUser(credentials) {
+        console.log(credentials)
+        return fetch('http://localhost:8080/api/v1/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(credentials)
+        })
+          .then(data => data.json())
+       }
+
+    const handleRegister = async e => {
+    e.preventDefault();
+    const token2 = await registerUser({
+        username,
+        password
+    });
+    }
+
     return (
         <div>
             <h1>Login</h1>
@@ -46,9 +62,9 @@ function Login({setToken}) {
             </label>
             <div>
                 <button type="submit">Submit</button>
+                <button onClick={()=>handleRegister()}> Register</button>
             </div>
             </form>
-            <Register/>
         </div>
     )
 }

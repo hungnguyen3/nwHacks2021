@@ -3,8 +3,8 @@ import RefreshStudents from './RefreshStudents'
 
 //api/v1/contacts/
 
-function DeleteStudent({sessionId, uId}) {
-    async function getStudents(info){
+function DeleteStudent({sessionId, uId}: any) {
+    async function getStudents(info: object){
         let url =  'http://localhost:8080/api/v1/contacts/' + uId;
         return fetch(url, {
             method: 'DELETE',
@@ -24,7 +24,7 @@ function DeleteStudent({sessionId, uId}) {
         }
 
     return (
-        <button onClick={()=>handleGetStudents()}>Delete</button>
+            <button onClick={()=>handleDeleteStudents().then(setTimeout(() => {  handleGetStudents(); }, 1000))}>Delete</button>
     )
 }
 
