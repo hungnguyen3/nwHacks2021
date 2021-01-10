@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import React, { useState } from 'react';
-import QuestionBank from '../functions/QuestionBank';
+import QuestionBank, { Homework } from '../functions/QuestionBank';
 
 interface Props {
     sessionId: string;
@@ -14,7 +12,10 @@ interface Question {
 }
 
 const AddQuestions: React.FC<Props> = ({ sessionId }) => {
-    const [questionBank, setQuestionBank] = useState([]);
+    const [questionBank, setQuestionBank]: [
+        Homework[],
+        React.Dispatch<[]>
+    ] = useState([]);
     const [radioButton, setRadioButton] = useState('');
     const [facts, setFacts] = useState('');
     const [questions, setQuestions] = useState('');
@@ -39,7 +40,9 @@ const AddQuestions: React.FC<Props> = ({ sessionId }) => {
             .post('/api/v1/homework/get', {
                 sessionId: sessionId,
             })
-            .then(res => setQuestionBank(res.data.homework))
+            .then((res: AxiosResponse<{ homework: [] }>) =>
+                setQuestionBank(res.data.homework)
+            )
             .catch(err => console.error(err));
     };
 

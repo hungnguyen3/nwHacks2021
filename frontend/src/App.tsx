@@ -34,7 +34,7 @@ const App: React.FC = () => {
                             <div>
                                 <ManageStudents sessionId={token} />
                                 <AddQuestions sessionId={token} />
-                                <SendSMS></SendSMS>
+                                <SendSMS sessionId={token} />
                                 <Logout setToken={setToken} />
                             </div>
                         ) : (
