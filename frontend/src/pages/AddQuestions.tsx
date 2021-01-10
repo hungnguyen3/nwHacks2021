@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import QuestionBank from '../functions/QuestionBank';
 
 function AddQuestions({ sessionId }:any) {
@@ -51,18 +51,20 @@ function AddQuestions({ sessionId }:any) {
 
     const handleGetQuestions = async () => {
         const data = await getQuestions({});
-        console.log(data);
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        console.log(data.homework);
         setQuestionBank(data.homework);
     }
 
     // useEffect(()=>{
     //     handleGetQuestions();
-    // });
+    // }, []);
 
     return (
         <div>
             <h1>Question Bank</h1>
             <QuestionBank questionBank = {questionBank} sessionId = {sessionId} handleGetQuestions = {handleGetQuestions}/>
+
             <h1>Add Questions & Facts</h1>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -89,7 +91,7 @@ function AddQuestions({ sessionId }:any) {
                         </>
                 }
                 <div>
-                    <button type="submit">Add</button>
+                    <button type="submit" onClick={() => handleGetQuestions()}>Add</button>
                 </div>
             </form>
         </div>
