@@ -3,7 +3,7 @@ import Login from './pages/Login';
 import Managestudents from './pages/ManageStudents';
 import AddQuestions from './pages/AddQuestions';
 import SendSMS from './pages/SendSMS';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logout from './functions/Logout';
 
 import {
@@ -13,7 +13,18 @@ import {
 } from 'react-router-dom';
 
 function App() {
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(() => {
+    const savedToken = window.localStorage.getItem('token');
+    return savedToken != null ? JSON.parse(savedToken) : null;
+  });
+
+  useEffect(() => {
+    if (token == null) {
+      window.localStorage.removeItem('token');
+    } else {
+      window.localStorage.setItem('token', JSON.stringify(token));
+    }
+  }, [token]);
 
   return (
     <Router>
